@@ -6,6 +6,12 @@ body {
    font-size: 2rem;
 }
 
+canvas {
+   // width: 500px;
+   // height: 500px;
+   border: 1px solid black;
+}
+
 .wrapper {
    max-width: 500px;
    text-align: center;

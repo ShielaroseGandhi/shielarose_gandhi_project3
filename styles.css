@@ -163,6 +163,9 @@ html {
 body {
   font-size: 2rem; }
 
+canvas {
+  border: 1px solid black; }
+
 .wrapper {
   max-width: 500px;
   text-align: center;
