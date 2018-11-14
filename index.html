@@ -8,51 +8,55 @@
    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-   <h1>Meatier</h1>
-   <div class="top-bar flex">
-      <ul class="lives">
-         <li class="one-life">
-            <img src="assets/heart.png" alt="heart">
-         </li>
-         <li class="one-life">
-            <img src="assets/heart.png" alt="heart">
-         </li>
-         <li class="one-life">
-            <img src="assets/heart.png" alt="heart">
-         </li>
-         <li class="one-life">
-            <img src="assets/heart.png" alt="heart">
-         </li>
-      </ul>
-      <p class="points">Points: <span class="point-counter">0</span></p>
-   </div>
-   <canvas></canvas>
-   <div class="pop-up start-game">
-      <form action"" class="choose-character">
-         <p>Choose your dino:</p>
-
-         <label for="one"><img src="assets/dinoCharacters/DinoSprites_doux.gif" alt="blue dinosaur"></label>
-         <input type="radio" class="visuallyhidden" name="character" value="one" id="one" checked>
+   <div class="wrapper">
+      <h1>Meatier</h1>
+      <div class="top-bar flex">
+         <ul class="lives">
+            <li class="one-life">
+               <img src="assets/heart.png" alt="heart">
+            </li>
+            <li class="one-life">
+               <img src="assets/heart.png" alt="heart">
+            </li>
+            <li class="one-life">
+               <img src="assets/heart.png" alt="heart">
+            </li>
+            <li class="one-life">
+               <img src="assets/heart.png" alt="heart">
+            </li>
+         </ul>
+         <p class="points">Points: <span class="point-counter">0</span></p>
+      </div>
+      <canvas></canvas>
+      <div class="pop-up start-game">
+         <form action"" class="choose-character">
+            <p>Choose your dino:</p>
    
-         <label for="two"><img src="assets/dinoCharacters/DinoSprites_mort.gif" alt="red dinosaur"></label>
-         <input type="radio" class="visuallyhidden" name="character" value="two" id="two">
+            <div class="characters">
+               <label for="one"><img src="assets/dinoCharacters/DinoSprites_doux.gif" alt="blue dinosaur"></label>
+               <input type="radio" name="character" value="one" id="one" checked>
+         
+               <label for="two"><img src="assets/dinoCharacters/DinoSprites_mort.gif" alt="red dinosaur"></label>
+               <input type="radio" name="character" value="two" id="two">
+         
+               <label for="three"><img src="assets/dinoCharacters/DinoSprites_vita.gif" alt="green dinosaur"></label>
+               <input type="radio" name="character" value="three" id="three">
+      
+               <label for="four"><img src="assets/dinoCharacters/DinoSprites_tard.gif" alt="yellow dinosaur"></label>
+               <input type="radio" name="character" value="four" id="four">
+            </div>
    
-         <label for="three"><img src="assets/dinoCharacters/DinoSprites_vita.gif" alt="green dinosaur"></label>
-         <input type="radio" class="visuallyhidden" name="character" value="three" id="three">
-
-         <label for="four"><img src="assets/dinoCharacters/DinoSprites_tard.gif" alt="yellow dinosaur"></label>
-         <input type="radio" class="visuallyhidden" name="character" value="three" id="four">
-
-         <label for="submit" class="visuallyhidden"></label>
-         <input type="submit" name="start" value="Start" id="start">
-      </form>
-   </div>
-   <div class="pop-up game-over">
-      <p>Extinct!</p>
-      <form action="" class="restart">
-         <label for="play-again">Play again?</label>
-         <input type="radio" class="visuallyhidden" name="play-again" value="play-again" id="play-again">
-      </form>
+            <label for="submit" class="visuallyhidden"></label>
+            <input type="submit" name="start" value="Start" id="start" class="start">
+         </form>
+      </div>
+      <div class="pop-up game-over">
+         <p>Extinct!</p>
+         <form action="" class="restart">
+            <label for="play-again"></label>
+            <input type="submit" name="play-again" value="Play Again" id="play-again">
+         </form>
+      </div>
    </div>
 
    <script src="js/main.js"></script>
