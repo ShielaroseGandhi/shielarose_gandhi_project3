@@ -4,28 +4,56 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Catch the apples</title>
+   <title>Meatier</title>
    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-   <h1>Apple Catch</h1>
-   <div class="game-container">
-      <form action"" class="pop-up choose-character">
-         <label for="one">One</label>
-         <input type="radio" name="character" value="one" id="one" checked>
-   
-         <label for="two">Two</label>
-         <input type="radio" name="character" value="two" id="two">
-   
-         <label for="three">Three</label>
-         <input type="radio" name="character" value="three" id="three">
-      </form>
-
+   <h1>Meatier</h1>
+   <div class="top-bar flex">
+      <ul class="lives">
+         <li class="one-life">
+            <img src="assets/heart.png" alt="heart">
+         </li>
+         <li class="one-life">
+            <img src="assets/heart.png" alt="heart">
+         </li>
+         <li class="one-life">
+            <img src="assets/heart.png" alt="heart">
+         </li>
+         <li class="one-life">
+            <img src="assets/heart.png" alt="heart">
+         </li>
+      </ul>
+      <p class="points">Points: <span class="point-counter">0</span></p>
    </div>
+   <canvas></canvas>
+   <div class="pop-up start-game">
+      <form action"" class="choose-character">
+         <p>Choose your dino:</p>
 
+         <label for="one"><img src="assets/dinoCharacters/DinoSprites_doux.gif" alt="blue dinosaur"></label>
+         <input type="radio" class="visuallyhidden" name="character" value="one" id="one" checked>
+   
+         <label for="two"><img src="assets/dinoCharacters/DinoSprites_mort.gif" alt="red dinosaur"></label>
+         <input type="radio" class="visuallyhidden" name="character" value="two" id="two">
+   
+         <label for="three"><img src="assets/dinoCharacters/DinoSprites_vita.gif" alt="green dinosaur"></label>
+         <input type="radio" class="visuallyhidden" name="character" value="three" id="three">
 
+         <label for="four"><img src="assets/dinoCharacters/DinoSprites_tard.gif" alt="yellow dinosaur"></label>
+         <input type="radio" class="visuallyhidden" name="character" value="three" id="four">
 
-
+         <label for="submit" class="visuallyhidden"></label>
+         <input type="submit" name="start" value="Start" id="start">
+      </form>
+   </div>
+   <div class="pop-up game-over">
+      <p>Extinct!</p>
+      <form action="" class="restart">
+         <label for="play-again">Play again?</label>
+         <input type="radio" class="visuallyhidden" name="play-again" value="play-again" id="play-again">
+      </form>
+   </div>
 
    <script src="js/main.js"></script>
 </body>
