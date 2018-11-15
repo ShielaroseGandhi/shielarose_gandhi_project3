@@ -112,7 +112,7 @@ app.charactersAndItems.meteor = {
 // app.meteorImage.src = app.images.meteor;
 // app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
 
-// Animate meteors
+// Animate meteors and steaks
 app.animate = function(){
    // Clear canvas 
    app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
@@ -120,10 +120,16 @@ app.animate = function(){
    // Draw meteors
    app.meteorImage = new Image();
    app.meteorImage.src = app.images.meteor;
+
    app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
 
    // velocity of meteor
    app.charactersAndItems.meteor.y += app.charactersAndItems.meteor.spdY;
+
+
+   if (app.charactersAndItems.meteor.y === app.charactersAndItems.dino.y){
+      console.log("disappear")
+   }
 
    // Draw steaks
    app.steakImage = new Image();
@@ -138,9 +144,8 @@ app.animate = function(){
 
    // boundaries for meteor
    if (app.charactersAndItems.meteor.y > app.canvas.height - 50) {
-      app.charactersAndItems.meteor.y = -app.canvas.height;
+      app.charactersAndItems.meteor.y = app.canvas.height - 50;
    }
-
    // boundaries for steak
    if (app.charactersAndItems.steak.y > app.canvas.height - 50) {
       app.charactersAndItems.steak.y = app.canvas.height - 50;
@@ -148,15 +153,31 @@ app.animate = function(){
 
    // Redraw dino
    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
-
-   // // Redraw steak
-   // app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
 };
-app.animate();
 
+// Lose a life if hit by a meteor 
+app.loseALife = function(){
+   for(let y = 0; y < app.charactersAndItems.dino.y; y++){
+      console.log("working1")
+      // console.log(y)
+   };
+   for(let x = 0; x < app.charactersAndItems.dino.x; x++){
+      console.log("working2");
+   };
+   for (let my = -47; my > app.charactersAndItems.meteor.y && my < app.canvas.height; my++){
+      console.log("working3");
+      // console.log(app.charactersAndItems.meteor.y)
+   };
+   for(let mx = 0; mx < app.charactersAndItems.meteor.x; mx++){
+      console.log("working4");
+   };
+
+};
 
 app.init = function(){
    app.charactersAndItems.move;
+   app.animate();
+   app.loseALife();
 };
 
 // Make dino move right and left using arrow keys
