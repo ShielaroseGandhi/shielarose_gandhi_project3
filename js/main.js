@@ -46,72 +46,113 @@ app.playerImage = new Image();
 app.playerImage.src = app.images.redDino;
 app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
 
-// Steaks
-app.charactersAndItems.steak = {
-   name: "Steak",
-   x: app.canvas.width / 2 - 40,
-   y: 0,
-   spdX: 0,
-   spdY: 15,
-   width: 30,
-   height: 30,
-}
-
-// Draw Steaks
-app.steakImage = new Image();
-app.steakImage.src = app.images.steak;
-app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
-
-
-// Meteors
-app.charactersAndItems.meteor = {
-   name: "Meteor",
-   x: app.canvas.width / 2,
-   y: 0,
-   spdX: 0,
-   spdY: 15,
-   width: 70,
-   height: 70,
-}
-
-// Draw Meteors
-app.meteorImage = new Image();
-app.meteorImage.src = app.images.meteor;
-app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
 
 // Move dino with arrow keys
 app.charactersAndItems.moveDino = function(e){
    if (e.keyCode == 39) {
       app.charactersAndItems.dino.x += app.charactersAndItems.dino.spdX;
    } // right arrow
-
+   
    if (e.keyCode == 37) {
       app.charactersAndItems.dino.x -= app.charactersAndItems.dino.spdX;
    } // left arrow
-
+   
    // Dino cannot go out of bounds
    if (app.charactersAndItems.dino.x < 0) {
       app.charactersAndItems.dino.x = 0;
    }
-
+   
    if (app.charactersAndItems.dino.x > app.canvas.width - 80) {
       app.charactersAndItems.dino.x = app.canvas.width - 80;
    }
-
    // Clear canvas 
    app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
+   
+   // Redraw dino
+   app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
+   
+   // Redraw steak
+   app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
+   
+   // Redraw meteor
+   app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
+};
+
+document.onkeydown = app.charactersAndItems.moveDino;
+
+// Steaks
+app.charactersAndItems.steak = {
+   name: "Steak",
+   x: app.canvas.width / 2 - 40,
+   y: 0,
+   spdX: 0,
+   spdY: 2,
+   width: 30,
+   height: 30,
+}
+
+// Draw Steaks
+// app.steakImage = new Image();
+// app.steakImage.src = app.images.steak;
+// app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
+
+// Meteors
+app.charactersAndItems.meteor = {
+   name: "Meteor",
+   x: app.canvas.width / 2,
+   y: -50,
+   spdX: 0,
+   spdY: 2,
+   width: 65,
+   height: 65,
+}
+
+// Draw Meteors
+// app.meteorImage = new Image();
+// app.meteorImage.src = app.images.meteor;
+// app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
+
+// Animate meteors
+app.animate = function(){
+   // Clear canvas 
+   app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
+
+   // Draw meteors
+   app.meteorImage = new Image();
+   app.meteorImage.src = app.images.meteor;
+   app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
+
+   // velocity of meteor
+   app.charactersAndItems.meteor.y += app.charactersAndItems.meteor.spdY;
+
+   // Draw steaks
+   app.steakImage = new Image();
+   app.steakImage.src = app.images.steak;
+   app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
+
+   // velocity of steak
+   app.charactersAndItems.steak.y += app.charactersAndItems.steak.spdY;
+
+   // begin animation loop
+   requestAnimationFrame(app.animate);
+
+   // boundaries for meteor
+   if (app.charactersAndItems.meteor.y > app.canvas.height - 50) {
+      app.charactersAndItems.meteor.y = -app.canvas.height;
+   }
+
+   // boundaries for steak
+   if (app.charactersAndItems.steak.y > app.canvas.height - 50) {
+      app.charactersAndItems.steak.y = app.canvas.height - 50;
+   }
 
    // Redraw dino
    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
 
-   // Redraw steak
-   app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
-
-   // Redraw meteor
-   app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
+   // // Redraw steak
+   // app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
 };
-document.onkeydown = app.charactersAndItems.moveDino;
-
+app.animate();
 
 
 app.init = function(){
