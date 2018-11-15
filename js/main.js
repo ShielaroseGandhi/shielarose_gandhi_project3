@@ -46,6 +46,39 @@ app.playerImage = new Image();
 app.playerImage.src = app.images.redDino;
 app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
 
+// Steaks
+app.charactersAndItems.steak = {
+   name: "Steak",
+   x: app.canvas.width / 2 - 40,
+   y: 0,
+   spdX: 0,
+   spdY: 15,
+   width: 30,
+   height: 30,
+}
+
+// Draw Steaks
+app.steakImage = new Image();
+app.steakImage.src = app.images.steak;
+app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
+
+
+// Meteors
+app.charactersAndItems.meteor = {
+   name: "Meteor",
+   x: app.canvas.width / 2,
+   y: 0,
+   spdX: 0,
+   spdY: 15,
+   width: 70,
+   height: 70,
+}
+
+// Draw Meteors
+app.meteorImage = new Image();
+app.meteorImage.src = app.images.meteor;
+app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
+
 // Move dino with arrow keys
 app.charactersAndItems.moveDino = function(e){
    if (e.keyCode == 39) {
@@ -65,26 +98,20 @@ app.charactersAndItems.moveDino = function(e){
       app.charactersAndItems.dino.x = app.canvas.width - 80;
    }
 
+   // Clear canvas 
    app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
+
+   // Redraw dino
    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
+
+   // Redraw steak
+   app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
+
+   // Redraw meteor
+   app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
 };
 document.onkeydown = app.charactersAndItems.moveDino;
 
-// Steaks
-app.charactersAndItems.steak = {
-   name: "Steak",
-   x: app.canvas.width / 2 - 40,
-   y: app.canvas.height - 250,
-   spdX: 0,
-   spdY: 15,
-   width: 80,
-   height: 80,
-}
-
-// Draw Steaks
-app.steakImage = new Image();
-app.steakImage.src = app.images.steak;
-app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
 
 
 app.init = function(){
