@@ -15,72 +15,35 @@ app.image = new Image();
 app.image.src = "./assets/dinoCharacters/dino_mort/0.gif";
 app.chosenDino = app.ctx.drawImage(app.image, app.rectX, app.rectY, 80, 80);
 
+// Make dino move right and left using arrow keys
 app.move = function(e) {
    if (e.keyCode == 39) { 
-      app.rectX+=5; 
+      app.rectX+=15; 
    } //right arrow
    
    if(e.keyCode == 37) { 
-      app.rectX-=5; 
+      app.rectX-=15; 
    } //left arrow
 
-   app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
 
+// Dino cannot go out of bounds
+   if(app.rectX < app.rectX / 5) {
+      app.rectX = app.rectX / 5;
+   }
+
+   if(app.rectX > app.canvas.width - (app.rectX / 5)) {
+      app.rectX = app.canvas.width - (app.rectX / 5);
+   }
+
+   app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
    app.chosenDino = app.ctx.drawImage(app.image, app.rectX, app.rectY, 80, 80);
 };
 
+
+
+
+
 document.onkeydown = app.move;
-
-
-// Playing with arrow keys 
-
-// app.leftPressed = false;
-// app.rightPressed = false;
-
-// app.leftAndRightPressed = function(event) {
-//    if (event.keyCode == 39) {
-//       app.rightPressed = true;
-//    } 
-//    else if (event.keyCode == 37) {
-//       app.leftPressed = true;
-//    } 
-//    else {
-
-//    }
-// };
-
-// app.leftAndRightNotPressed = function(event) {
-//    if (event.keyCode == 39) {
-//       app.rightPressed = false;
-//    }
-//    else if (event.keyCode == 37) {
-//       app.leftPressed = false;
-//    }
-//    else {
-
-//    }
-// };
-
-// document.addEventListener('keydown',app.leftAndRightPressed, false);
-// document.addEventListener('keyup', app.leftAndRightNotPressed, false);
-
-
-// function draw() {
-//    app.ctx.clearRect(0, 0, app.canvas.width, canvas.height);
-//    if (rightPressed) {
-//       app.chosenDino.x += 5;
-//    }
-//    else if (leftPressed) {
-//       app.chosenDino.y -= 5;
-//    }
-//    app.ctx.drawImage(img, playerX, playerY);
-//    requestAnimationFrame(draw);
-// }
-
-
-
-
-
 
 // Pop-up comes up on load on top of the game asking the player to choose their dino and select start
 
