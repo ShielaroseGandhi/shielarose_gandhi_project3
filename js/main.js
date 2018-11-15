@@ -10,7 +10,7 @@ app.ctx.imageSmoothingEnabled = false;
 
 
 // Array of images
-app.images = {};
+app.images = [];
 app.images.blueDino = new Image();
 app.images.blueDino = "./assets/dinoCharacters/blueDino.png";
 app.images.redDino = new Image();
