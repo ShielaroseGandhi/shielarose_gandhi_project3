@@ -84,12 +84,12 @@ app.charactersAndItems.steak = {
 // Draw Steaks
 app.steakImage = new Image();
 app.steakImage.src = app.images.steak;
-app.steak = app.ctx2.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
+app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
 
 
-// app.init = function(){
-//    app.charactersAndItems.move;
-// };
+app.init = function(){
+   app.charactersAndItems.move;
+};
 
 // Make dino move right and left using arrow keys
 // app.moveDino = function(e){
