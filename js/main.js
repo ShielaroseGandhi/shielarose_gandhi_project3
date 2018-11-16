@@ -8,7 +8,6 @@ app.canvas.height = 500;
 
 app.ctx.imageSmoothingEnabled = false;
 
-
 // Array of images
 app.images = [];
 app.images.blueDino = new Image();
@@ -23,6 +22,10 @@ app.images.heart = new Image();
 app.images.heart = "./assets/heart.png";
 app.images.steak = new Image();
 app.images.steak = "./assets/Steak.png";
+app.images.steak2 = new Image();
+app.images.steak2 = "./assets/Steak2.png";
+app.images.steak3 = new Image();
+app.images.steak3 = "./assets/Steak3.png";
 app.images.meteor = new Image();
 app.images.meteor = "./assets/meteor.png";
 app.images.meteor2 = new Image();
@@ -75,47 +78,67 @@ app.charactersAndItems.moveDino = function(e){
    // Redraw dino
    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
    
-   // Redraw steak
-   app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
    
    // Redraw meteors
    app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y,app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
 
    app.meteor2 = app.ctx.drawImage(app.meteor2Image, app.charactersAndItems.meteor2.x, app.charactersAndItems.meteor2.y, app.charactersAndItems.meteor2.width, app.charactersAndItems.meteor2.height);
 
-   app.meteor3 = app.ctx.drawImage(app.meteor3Image, app.charactersAndItems.meteor3.x, app.charactersAndItems.meteor3.y, app.charactersAndItems.meteor3.width, app.charactersAndItems.meteor3.height);
+   app.meteor3 = app.ctx.drawImage(app.meteor3Image, app.charactersAndItems.meteor3.x,app.charactersAndItems.meteor3.y, app.charactersAndItems.meteor3.width, app.charactersAndItems.meteor3.height);
+
+   // Redraw steaks
+   app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
+
+   app.steak2 = app.ctx.drawImage(app.steak2Image, app.charactersAndItems.steak2.x, app.charactersAndItems.steak2.y, app.charactersAndItems.steak2.width, app.charactersAndItems.steak2.height);
+
+   app.steak3 = app.ctx.drawImage(app.steak3Image, app.charactersAndItems.steak3.x, app.charactersAndItems.steak3.y, app.charactersAndItems.steak3.width, app.charactersAndItems.steak3.height);
 };
 
 document.onkeydown = app.charactersAndItems.moveDino;
 
+// Random x coordinate generator for meteors and steaks
+app.randomNumber = function (maxNumber) {
+   return Math.floor((Math.random() * (maxNumber + 1)));
+};
+
 // Steaks
 app.charactersAndItems.steak = {
    name: "Steak",
-   x: app.canvas.width / 2 - 40,
-   y: 0,
+   x: app.randomNumber(app.canvas.width - 200),
+   y: -10,
+   spdX: 0,
+   spdY: 1,
+   width: 45,
+   height: 45,
+}
+
+app.charactersAndItems.steak2 = {
+   name: "Steak2",
+   x: app.randomNumber(app.canvas.width - 150),
+   y: -250,
+   spdX: 0,
+   spdY: 1.2,
+   width: 45,
+   height: 45,
+}
+
+app.charactersAndItems.steak3 = {
+   name: "Steak3",
+   x: app.randomNumber(app.canvas.width),
+   y: -50,
    spdX: 0,
    spdY: 2,
    width: 45,
    height: 45,
 }
 
-// Draw Steaks
-// app.steakImage = new Image();
-// app.steakImage.src = app.images.steak;
-// app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
-
-// Random x coordinate generator for meteors and steaks
-app.randomNumber = function(maxNumber) {
-   return Math.floor((Math.random() * (maxNumber + 1)));
-};
-
 // Meteors
 app.charactersAndItems.meteor = {
    name: "Meteor",
    x: app.randomNumber(app.canvas.width - 200),
-   y: -50,
+   y: -100,
    spdX: 0,
-   spdY: 4,
+   spdY: 3,
    width: 45,
    height: 45,
 }
@@ -125,7 +148,7 @@ app.charactersAndItems.meteor2 = {
    x: app.randomNumber(app.canvas.width - 250),
    y: -50,
    spdX: 0,
-   spdY: 3,
+   spdY: 2,
    width: 45,
    height: 45,
 }
@@ -133,27 +156,14 @@ app.charactersAndItems.meteor2 = {
 app.charactersAndItems.meteor3 = {
    name: "Meteor3",
    x: app.randomNumber(app.canvas.width - 300),
-   y: -50,
+   y: -40,
    spdX: 0,
-   spdY: 2,
+   spdY: 1.5,
    width: 45,
    height: 45,
 }
 
-// Draw Meteors
-// app.meteorImage = new Image();
-// app.meteorImage.src = app.images.meteor;
-// app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
-
-// app.meteor2Image = new Image();
-// app.meteor2Image.src = app.images.meteor;
-// app.meteor2 = app.ctx.drawImage(app.meteorImage2, app.charactersAndItems.meteor2.x, app.charactersAndItems.meteor2.y, app.charactersAndItems.meteor2.width, app.charactersAndItems.meteor2.height);
-
-// app.meteor3Image = new Image();
-// app.meteor3Image.src = app.images.meteor;
-// app.meteor3 = app.ctx.drawImage(app.meteorImage3, app.charactersAndItems.meteor3.x, app.charactersAndItems.meteor3.y, app.charactersAndItems.meteor3.width, app.charactersAndItems.meteor3.height);
-
-// Collision function
+// Collision function for meteor
 app.meteorCollision = function (dino, meteor) {
    if (!(meteor.y === dino.y)) {
       return false;
@@ -164,64 +174,63 @@ app.meteorCollision = function (dino, meteor) {
    return false;
 };
 
-// Make sure meteors are at least 50px away from each other
-app.meteorDistance = function(meteor1, meteor2, meteor3){
-   if ((meteor2 - 50) < meteor1.x > (meteor2 + 50) 
-   || (meteor3 - 50) < meteor1.x > (meteor3 + 50)) {
+// Collision function for steak
+app.steakCollision = function (dino, steak) {
+   if (!(steak.y === dino.y)) {
       return false;
    }
-   if ((meteor1 - 50) < meteor2.x > (meteor1 + 50)
-   || (meteor3 - 50) < meteor2.x > (meteor3 + 50)) {
-      return false;
-   }  
-   if ((meteor1 - 50) < meteor3.x > (meteor1 + 50)
-   || (meteor2 - 50) < meteor3.x > (meteor2 + 50)) {
-      return false;
-   } 
-   else {
+   if (steak.x > (dino.x - steak.width) && steak.x < (dino.x + dino.width)) {
       return true;
-   }
+   } else
+      return false;
 };
+
+// Make sure meteors are at least 50px away from each other
+// app.meteorDistance = function(meteor1, meteor2, meteor3){
+//    if ((meteor2.x - 50) < meteor1.x > (meteor2.x + 50) 
+//    || (meteor3.x - 50) < meteor1.x > (meteor3.x + 50)) {
+//       return false;
+//    }
+//    if ((meteor1.x - 50) < meteor2.x > (meteor1.x + 50)
+//    || (meteor3.x - 50) < meteor2.x > (meteor3.x + 50)) {
+//       return false;
+//    }  
+//    if ((meteor1.x - 50) < meteor3.x > (meteor1.x + 50)
+//    || (meteor2.x - 50) < meteor3.x > (meteor2.x + 50)) {
+//       return false;
+//    } 
+//    else {
+//       return true;
+//    }
+// };
       
-// Animate meteors and steaks
+// Animate meteors
 app.animate = function(){
    // Clear canvas 
    app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
 
    // Draw meteors
-   // Meteor 1
    app.meteorImage = new Image();
    app.meteorImage.src = app.images.meteor;
    app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y,app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
 
-   // Meteor 2
    app.meteor2Image = new Image();
    app.meteor2Image.src = app.images.meteor2;
-   app.meteor2 = app.ctx.drawImage(app.meteor2Image, app.charactersAndItems.meteor2.x, app.charactersAndItems.meteor2.y, app.charactersAndItems.meteor2.width, app.charactersAndItems.meteor2.height);
+   app.meteor2 = app.ctx.drawImage(app.meteor2Image, app.charactersAndItems.meteor2.x,app.charactersAndItems.meteor2.y,app.charactersAndItems.meteor2.width, app.charactersAndItems.meteor2.height);
 
-   // Meteor 3
    app.meteor3Image = new Image();
    app.meteor3Image.src = app.images.meteor3;
-   app.meteor3 = app.ctx.drawImage(app.meteor3Image, app.charactersAndItems.meteor3.x, app.charactersAndItems.meteor3.y, app.charactersAndItems.meteor3.width, app.charactersAndItems.meteor3.height);
+   app.meteor3 = app.ctx.drawImage(app.meteor3Image, app.charactersAndItems.meteor3.x,app.charactersAndItems.meteor3.y,app.charactersAndItems.meteor3.width, app.charactersAndItems.meteor3.height);
 
    // velocity of meteors
-   // Meteor 1
-   app.charactersAndItems.meteor.y += app.charactersAndItems.meteor.spdY;
-
-   // Meteor 2
-   app.charactersAndItems.meteor2.y += app.charactersAndItems.meteor2.spdY;
-
-   // Meteor 3
-   app.charactersAndItems.meteor3.y += app.charactersAndItems.meteor3.spdY;
+   app.charactersAndItems.meteor.y += app.charactersAndItems.meteor.spdY; // 1
+   app.charactersAndItems.meteor2.y += app.charactersAndItems.meteor2.spdY; // 2
+   app.charactersAndItems.meteor3.y += app.charactersAndItems.meteor3.spdY; // 3
 
    // Collision detection with meteors
    // Meteor 1
-   if (
-      app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor)
-      || app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor2)
-      || app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor3)
-      ){
-      console.log("collide")
+   if (app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor)){
+      console.log("collide meteor 1")
       $(".lives li:last-child").remove();
       if($(".lives li").length === 0){
          alert("game over");
@@ -229,32 +238,70 @@ app.animate = function(){
    };
 
    // Meteor 2
-   // if (
-   //    app.dinoCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor2)
-   // ) {
-   //    $(".lives li:last-child").remove();
-   //    if ($(".lives li").length === 0) {
-   //       alert("game over");
-   //    }
-   // };
+   if (app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor2)){
+      console.log("collide meteor 2")
+      $(".lives li:last-child").remove();
+      if ($(".lives li").length === 0) {
+         alert("game over");
+      }
 
-   // // Meteor 3
-   // if (
-   //    app.dinoCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor3)
-   // ) {
-   //    $(".lives li:last-child").remove();
-   //    if ($(".lives li").length === 0) {
-   //       alert("game over");
-   //    }
-   // };
+   };
+
+   // Meteor 3
+   if (app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor3)){
+      console.log("collide meteor 3")
+      $(".lives li:last-child").remove();
+      if ($(".lives li").length === 0) {
+         alert("game over");
+      }
+   };
 
    // Draw steaks
    app.steakImage = new Image();
    app.steakImage.src = app.images.steak;
    app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
 
-   // velocity of steak
-   app.charactersAndItems.steak.y += app.charactersAndItems.steak.spdY;
+   app.steak2Image = new Image();
+   app.steak2Image.src = app.images.steak2;
+   app.steak2 = app.ctx.drawImage(app.steak2Image, app.charactersAndItems.steak2.x, app.charactersAndItems.steak2.y, app.charactersAndItems.steak2.width, app.charactersAndItems.steak2.height);
+
+   app.steak3Image = new Image();
+   app.steak3Image.src = app.images.steak3;
+   app.steak3 = app.ctx.drawImage(app.steak3Image, app.charactersAndItems.steak3.x, app.charactersAndItems.steak3.y, app.charactersAndItems.steak3.width, app.charactersAndItems.steak3.height);
+
+   // velocity of steaks
+   app.charactersAndItems.steak.y += app.charactersAndItems.steak.spdY; // 1
+   app.charactersAndItems.steak2.y += app.charactersAndItems.steak2.spdY; // 2
+   app.charactersAndItems.steak3.y += app.charactersAndItems.steak3.spdY; // 3
+
+
+   // Collision detection with steaks
+   // Steak 1
+   if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak)){
+      console.log("collide steak 1")
+      $(".lives li:last-child").remove();
+      if ($(".lives li").length === 0) {
+         alert("game over");
+      }
+   };
+
+   // Steak 2
+   if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak2)){
+      console.log("collide steak 2")
+      $(".lives li:last-child").remove();
+      if ($(".lives li").length === 0) {
+         alert("game over");
+      }
+   };
+
+   // Steak 3
+   if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak3)) {
+      console.log("collide steak 3")
+      $(".lives li:last-child").remove();
+      if ($(".lives li").length === 0) {
+         alert("game over");
+      }
+   };
 
    // begin animation loop
    requestAnimationFrame(app.animate);
@@ -262,7 +309,7 @@ app.animate = function(){
    // boundaries for meteor
    // Meteor 1
    if (app.charactersAndItems.meteor.y > app.canvas.height - 50) {
-      app.charactersAndItems.meteor.y = -app.canvas.height + 100;
+      app.charactersAndItems.meteor.y = -app.canvas.height;
       app.charactersAndItems.meteor.x = app.randomNumber(app.canvas.width);
    }
 
@@ -278,12 +325,23 @@ app.animate = function(){
       app.charactersAndItems.meteor3.x = app.randomNumber(app.canvas.width);
    }
 
-
-
-
    // boundaries for steak
+   // Steak 1
    if (app.charactersAndItems.steak.y > app.canvas.height - 50) {
-      app.charactersAndItems.steak.y = app.canvas.height - 50;
+      app.charactersAndItems.steak.y = -app.canvas.height;
+      app.charactersAndItems.steak.x = app.randomNumber(app.canvas.width);
+   }
+
+   // Steak 2
+   if (app.charactersAndItems.steak2.y > app.canvas.height - 50) {
+      app.charactersAndItems.steak2.y = -app.canvas.height;
+      app.charactersAndItems.steak2.x = app.randomNumber(app.canvas.width);
+   }
+
+   // Steak 3
+   if (app.charactersAndItems.steak3.y > app.canvas.height - 50) {
+      app.charactersAndItems.steak3.y = -app.canvas.height;
+      app.charactersAndItems.steak3.x = app.randomNumber(app.canvas.width);
    }
 
    // Redraw dino
@@ -291,28 +349,28 @@ app.animate = function(){
 };
 
 // Lose a life if hit by a meteor 
-app.loseALife = function(){
-   for(let y = 0; y < app.charactersAndItems.dino.y; y++){
-      console.log("working1")
-      // console.log(y)
-   };
-   for(let x = 0; x < app.charactersAndItems.dino.x; x++){
-      console.log("working2");
-   };
-   for (let my = -47; my > app.charactersAndItems.meteor.y && my < app.canvas.height; my++){
-      console.log("working3");
-      // console.log(app.charactersAndItems.meteor.y)
-   };
-   for(let mx = 0; mx < app.charactersAndItems.meteor.x; mx++){
-      console.log("working4");
-   };
+// app.loseALife = function(){
+//    for(let y = 0; y < app.charactersAndItems.dino.y; y++){
+//       console.log("working1")
+//       // console.log(y)
+//    };
+//    for(let x = 0; x < app.charactersAndItems.dino.x; x++){
+//       console.log("working2");
+//    };
+//    for (let my = -47; my > app.charactersAndItems.meteor.y && my < app.canvas.height; my++){
+//       console.log("working3");
+//       // console.log(app.charactersAndItems.meteor.y)
+//    };
+//    for(let mx = 0; mx < app.charactersAndItems.meteor.x; mx++){
+//       console.log("working4");
+//    };
 
-};
+// };
 
 app.init = function(){
    app.charactersAndItems.move;
    app.animate();
-   app.loseALife();
+   // app.loseALife();
 };
 
 // Make dino move right and left using arrow keys
