@@ -25,6 +25,10 @@ app.images.steak = new Image();
 app.images.steak = "./assets/Steak.png";
 app.images.meteor = new Image();
 app.images.meteor = "./assets/meteor.png";
+app.images.meteor2 = new Image();
+app.images.meteor2 = "./assets/meteor2.png";
+app.images.meteor3 = new Image();
+app.images.meteor3 = "./assets/meteor3.png";
 
 
 // Add dino to canvas 
@@ -34,7 +38,7 @@ app.charactersAndItems.dino = {
    name: "Blue",
    x: app.canvas.width / 2 - 40,
    y: app.canvas.height - 80,
-   spdX: 15,
+   spdX: 25,
    spdY: 0,
    hp: 4,
    width: 80,
@@ -74,8 +78,12 @@ app.charactersAndItems.moveDino = function(e){
    // Redraw steak
    app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
    
-   // Redraw meteor
-   app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
+   // Redraw meteors
+   app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y,app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
+
+   app.meteor2 = app.ctx.drawImage(app.meteor2Image, app.charactersAndItems.meteor2.x, app.charactersAndItems.meteor2.y, app.charactersAndItems.meteor2.width, app.charactersAndItems.meteor2.height);
+
+   app.meteor3 = app.ctx.drawImage(app.meteor3Image, app.charactersAndItems.meteor3.x, app.charactersAndItems.meteor3.y, app.charactersAndItems.meteor3.width, app.charactersAndItems.meteor3.height);
 };
 
 document.onkeydown = app.charactersAndItems.moveDino;
@@ -87,8 +95,8 @@ app.charactersAndItems.steak = {
    y: 0,
    spdX: 0,
    spdY: 2,
-   width: 30,
-   height: 30,
+   width: 45,
+   height: 45,
 }
 
 // Draw Steaks
@@ -96,15 +104,40 @@ app.charactersAndItems.steak = {
 // app.steakImage.src = app.images.steak;
 // app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
 
+// Random x coordinate generator for meteors and steaks
+app.randomNumber = function(maxNumber) {
+   return Math.floor((Math.random() * (maxNumber + 1)));
+};
+
 // Meteors
 app.charactersAndItems.meteor = {
    name: "Meteor",
-   x: app.canvas.width / 2,
+   x: app.randomNumber(app.canvas.width - 200),
+   y: -50,
+   spdX: 0,
+   spdY: 4,
+   width: 45,
+   height: 45,
+}
+
+app.charactersAndItems.meteor2 = {
+   name: "Meteor2",
+   x: app.randomNumber(app.canvas.width - 250),
+   y: -50,
+   spdX: 0,
+   spdY: 3,
+   width: 45,
+   height: 45,
+}
+
+app.charactersAndItems.meteor3 = {
+   name: "Meteor3",
+   x: app.randomNumber(app.canvas.width - 300),
    y: -50,
    spdX: 0,
    spdY: 2,
-   width: 65,
-   height: 65,
+   width: 45,
+   height: 45,
 }
 
 // Draw Meteors
@@ -112,24 +145,108 @@ app.charactersAndItems.meteor = {
 // app.meteorImage.src = app.images.meteor;
 // app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
 
+// app.meteor2Image = new Image();
+// app.meteor2Image.src = app.images.meteor;
+// app.meteor2 = app.ctx.drawImage(app.meteorImage2, app.charactersAndItems.meteor2.x, app.charactersAndItems.meteor2.y, app.charactersAndItems.meteor2.width, app.charactersAndItems.meteor2.height);
+
+// app.meteor3Image = new Image();
+// app.meteor3Image.src = app.images.meteor;
+// app.meteor3 = app.ctx.drawImage(app.meteorImage3, app.charactersAndItems.meteor3.x, app.charactersAndItems.meteor3.y, app.charactersAndItems.meteor3.width, app.charactersAndItems.meteor3.height);
+
+// Collision function
+app.meteorCollision = function (dino, meteor) {
+   if (!(meteor.y === dino.y)) {
+      return false;
+   }
+   if (meteor.x > (dino.x - meteor.width) && meteor.x < (dino.x + dino.width)) {
+      return true;
+   } else
+   return false;
+};
+
+// Make sure meteors are at least 50px away from each other
+app.meteorDistance = function(meteor1, meteor2, meteor3){
+   if ((meteor2 - 50) < meteor1.x > (meteor2 + 50) 
+   || (meteor3 - 50) < meteor1.x > (meteor3 + 50)) {
+      return false;
+   }
+   if ((meteor1 - 50) < meteor2.x > (meteor1 + 50)
+   || (meteor3 - 50) < meteor2.x > (meteor3 + 50)) {
+      return false;
+   }  
+   if ((meteor1 - 50) < meteor3.x > (meteor1 + 50)
+   || (meteor2 - 50) < meteor3.x > (meteor2 + 50)) {
+      return false;
+   } 
+   else {
+      return true;
+   }
+};
+      
 // Animate meteors and steaks
 app.animate = function(){
    // Clear canvas 
    app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
 
    // Draw meteors
+   // Meteor 1
    app.meteorImage = new Image();
    app.meteorImage.src = app.images.meteor;
+   app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y,app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
 
-   app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y, app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
+   // Meteor 2
+   app.meteor2Image = new Image();
+   app.meteor2Image.src = app.images.meteor2;
+   app.meteor2 = app.ctx.drawImage(app.meteor2Image, app.charactersAndItems.meteor2.x, app.charactersAndItems.meteor2.y, app.charactersAndItems.meteor2.width, app.charactersAndItems.meteor2.height);
 
-   // velocity of meteor
+   // Meteor 3
+   app.meteor3Image = new Image();
+   app.meteor3Image.src = app.images.meteor3;
+   app.meteor3 = app.ctx.drawImage(app.meteor3Image, app.charactersAndItems.meteor3.x, app.charactersAndItems.meteor3.y, app.charactersAndItems.meteor3.width, app.charactersAndItems.meteor3.height);
+
+   // velocity of meteors
+   // Meteor 1
    app.charactersAndItems.meteor.y += app.charactersAndItems.meteor.spdY;
 
+   // Meteor 2
+   app.charactersAndItems.meteor2.y += app.charactersAndItems.meteor2.spdY;
 
-   if (app.charactersAndItems.meteor.y === app.charactersAndItems.dino.y){
-      console.log("disappear")
-   }
+   // Meteor 3
+   app.charactersAndItems.meteor3.y += app.charactersAndItems.meteor3.spdY;
+
+   // Collision detection with meteors
+   // Meteor 1
+   if (
+      app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor)
+      || app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor2)
+      || app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor3)
+      ){
+      console.log("collide")
+      $(".lives li:last-child").remove();
+      if($(".lives li").length === 0){
+         alert("game over");
+      }
+   };
+
+   // Meteor 2
+   // if (
+   //    app.dinoCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor2)
+   // ) {
+   //    $(".lives li:last-child").remove();
+   //    if ($(".lives li").length === 0) {
+   //       alert("game over");
+   //    }
+   // };
+
+   // // Meteor 3
+   // if (
+   //    app.dinoCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor3)
+   // ) {
+   //    $(".lives li:last-child").remove();
+   //    if ($(".lives li").length === 0) {
+   //       alert("game over");
+   //    }
+   // };
 
    // Draw steaks
    app.steakImage = new Image();
@@ -143,9 +260,27 @@ app.animate = function(){
    requestAnimationFrame(app.animate);
 
    // boundaries for meteor
+   // Meteor 1
    if (app.charactersAndItems.meteor.y > app.canvas.height - 50) {
-      app.charactersAndItems.meteor.y = app.canvas.height - 50;
+      app.charactersAndItems.meteor.y = -app.canvas.height + 100;
+      app.charactersAndItems.meteor.x = app.randomNumber(app.canvas.width);
    }
+
+   // Meteor 2
+   if (app.charactersAndItems.meteor2.y > app.canvas.height - 50) {
+      app.charactersAndItems.meteor2.y = -app.canvas.height;
+      app.charactersAndItems.meteor2.x = app.randomNumber(app.canvas.width);
+   }
+
+   // Meteor 3
+   if (app.charactersAndItems.meteor3.y > app.canvas.height - 50) {
+      app.charactersAndItems.meteor3.y = -app.canvas.height;
+      app.charactersAndItems.meteor3.x = app.randomNumber(app.canvas.width);
+   }
+
+
+
+
    // boundaries for steak
    if (app.charactersAndItems.steak.y > app.canvas.height - 50) {
       app.charactersAndItems.steak.y = app.canvas.height - 50;
