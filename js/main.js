@@ -9,7 +9,11 @@ app.canvas.height = 500;
 app.ctx.imageSmoothingEnabled = false;
 
 // Game start setup
+// Points
 app.points = 0;
+$(".point-counter").text(app.points);
+
+
 
 // Array of images
 app.images = [];
@@ -44,11 +48,11 @@ app.charactersAndItems.dino = {
    name: "Blue",
    x: app.canvas.width / 2 - 40,
    y: app.canvas.height - 80,
-   spdX: 25,
+   spdX: 30,
    spdY: 0,
    hp: 4,
-   width: 80,
-   height: 80,
+   width: 65,
+   height: 65,
 };
 
 // Draw player
@@ -72,8 +76,8 @@ app.charactersAndItems.moveDino = function(e){
       app.charactersAndItems.dino.x = 0;
    }
    
-   if (app.charactersAndItems.dino.x > app.canvas.width - 80) {
-      app.charactersAndItems.dino.x = app.canvas.width - 80;
+   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
+      app.charactersAndItems.dino.x = app.canvas.width - 70;
    }
    // Clear canvas 
    app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
@@ -106,49 +110,8 @@ app.randomNumber = function (maxNumber) {
 
 // Steaks
 app.charactersAndItems.steak = {
-   name: "Steak",
-   x: app.randomNumber(app.canvas.width - 200),
-   y: -75,
-   spdX: 0,
-   spdY: 1,
-   width: 45,
-   height: 45,
-}
-
-app.charactersAndItems.steak2 = {
-   name: "Steak2",
-   x: app.randomNumber(app.canvas.width - 150),
-   y: -500,
-   spdX: 0,
-   spdY: 1.2,
-   width: 45,
-   height: 45,
-}
-
-app.charactersAndItems.steak3 = {
-   name: "Steak3",
-   x: app.randomNumber(app.canvas.width),
-   y: -250,
-   spdX: 0,
-   spdY: 2,
-   width: 45,
-   height: 45,
-}
-
-// Meteors
-app.charactersAndItems.meteor = {
-   name: "Meteor",
-   x: app.randomNumber(app.canvas.width - 200),
-   y: -100,
-   spdX: 0,
-   spdY: 3,
-   width: 45,
-   height: 45,
-}
-
-app.charactersAndItems.meteor2 = {
-   name: "Meteor2",
-   x: app.randomNumber(app.canvas.width - 250),
+   name: "Steak1",
+   x: app.randomNumber(app.canvas.width - 100),
    y: -400,
    spdX: 0,
    spdY: 2,
@@ -156,10 +119,51 @@ app.charactersAndItems.meteor2 = {
    height: 45,
 }
 
+app.charactersAndItems.steak2 = {
+   name: "Steak2",
+   x: app.randomNumber(app.canvas.width - 100),
+   y: -1000,
+   spdX: 0,
+   spdY: 2,
+   width: 45,
+   height: 45,
+}
+
+app.charactersAndItems.steak3 = {
+   name: "Steak3",
+   x: app.randomNumber(app.canvas.width - 100),
+   y: -250,
+   spdX: 0,
+   spdY: 1,
+   width: 45,
+   height: 45,
+}
+
+// Meteors
+app.charactersAndItems.meteor = {
+   name: "Meteor",
+   x: app.randomNumber(app.canvas.width - 100),
+   y: -600,
+   spdX: 0,
+   spdY: 1,
+   width: 45,
+   height: 45,
+}
+
+app.charactersAndItems.meteor2 = {
+   name: "Meteor2",
+   x: app.randomNumber(app.canvas.width - 100),
+   y: -150,
+   spdX: 0,
+   spdY: 2.5,
+   width: 45,
+   height: 45,
+}
+
 app.charactersAndItems.meteor3 = {
    name: "Meteor3",
-   x: app.randomNumber(app.canvas.width - 300),
-   y: -750,
+   x: app.randomNumber(app.canvas.width - 100),
+   y: -1200,
    spdX: 0,
    spdY: 1.5,
    width: 45,
@@ -187,25 +191,6 @@ app.steakCollision = function (dino, steak) {
    } else
       return false;
 };
-
-// Make sure meteors are at least 50px away from each other
-// app.meteorDistance = function(meteor1, meteor2, meteor3){
-//    if ((meteor2.x - 50) < meteor1.x > (meteor2.x + 50) 
-//    || (meteor3.x - 50) < meteor1.x > (meteor3.x + 50)) {
-//       return false;
-//    }
-//    if ((meteor1.x - 50) < meteor2.x > (meteor1.x + 50)
-//    || (meteor3.x - 50) < meteor2.x > (meteor3.x + 50)) {
-//       return false;
-//    }  
-//    if ((meteor1.x - 50) < meteor3.x > (meteor1.x + 50)
-//    || (meteor2.x - 50) < meteor3.x > (meteor2.x + 50)) {
-//       return false;
-//    } 
-//    else {
-//       return true;
-//    }
-// };
       
 // Animate meteors
 app.animate = function(){
@@ -307,38 +292,38 @@ app.animate = function(){
    // Meteor 1
    if (app.charactersAndItems.meteor.y > app.canvas.height - 50) {
       app.charactersAndItems.meteor.y = -app.canvas.height;
-      app.charactersAndItems.meteor.x = app.randomNumber(app.canvas.width);
+      app.charactersAndItems.meteor.x = app.randomNumber(app.canvas.width - 100);
    }
 
    // Meteor 2
    if (app.charactersAndItems.meteor2.y > app.canvas.height - 50) {
       app.charactersAndItems.meteor2.y = -app.canvas.height;
-      app.charactersAndItems.meteor2.x = app.randomNumber(app.canvas.width);
+      app.charactersAndItems.meteor2.x = app.randomNumber(app.canvas.width - 100);
    }
 
    // Meteor 3
    if (app.charactersAndItems.meteor3.y > app.canvas.height - 50) {
       app.charactersAndItems.meteor3.y = -app.canvas.height;
-      app.charactersAndItems.meteor3.x = app.randomNumber(app.canvas.width);
+      app.charactersAndItems.meteor3.x = app.randomNumber(app.canvas.width - 100);
    }
 
    // boundaries for steak
    // Steak 1
    if (app.charactersAndItems.steak.y > app.canvas.height - 50) {
       app.charactersAndItems.steak.y = -app.canvas.height;
-      app.charactersAndItems.steak.x = app.randomNumber(app.canvas.width);
+      app.charactersAndItems.steak.x = app.randomNumber(app.canvas.width - 100);
    }
 
    // Steak 2
    if (app.charactersAndItems.steak2.y > app.canvas.height - 50) {
       app.charactersAndItems.steak2.y = -app.canvas.height;
-      app.charactersAndItems.steak2.x = app.randomNumber(app.canvas.width);
+      app.charactersAndItems.steak2.x = app.randomNumber(app.canvas.width - 100);
    }
 
    // Steak 3
    if (app.charactersAndItems.steak3.y > app.canvas.height - 50) {
       app.charactersAndItems.steak3.y = -app.canvas.height;
-      app.charactersAndItems.steak3.x = app.randomNumber(app.canvas.width);
+      app.charactersAndItems.steak3.x = app.randomNumber(app.canvas.width - 100);
    }
 
    // Redraw dino
