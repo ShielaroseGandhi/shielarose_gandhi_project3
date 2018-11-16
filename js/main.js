@@ -8,6 +8,9 @@ app.canvas.height = 500;
 
 app.ctx.imageSmoothingEnabled = false;
 
+// Game start setup
+app.points = 0;
+
 // Array of images
 app.images = [];
 app.images.blueDino = new Image();
@@ -105,7 +108,7 @@ app.randomNumber = function (maxNumber) {
 app.charactersAndItems.steak = {
    name: "Steak",
    x: app.randomNumber(app.canvas.width - 200),
-   y: -10,
+   y: -75,
    spdX: 0,
    spdY: 1,
    width: 45,
@@ -115,7 +118,7 @@ app.charactersAndItems.steak = {
 app.charactersAndItems.steak2 = {
    name: "Steak2",
    x: app.randomNumber(app.canvas.width - 150),
-   y: -250,
+   y: -500,
    spdX: 0,
    spdY: 1.2,
    width: 45,
@@ -125,7 +128,7 @@ app.charactersAndItems.steak2 = {
 app.charactersAndItems.steak3 = {
    name: "Steak3",
    x: app.randomNumber(app.canvas.width),
-   y: -50,
+   y: -250,
    spdX: 0,
    spdY: 2,
    width: 45,
@@ -146,7 +149,7 @@ app.charactersAndItems.meteor = {
 app.charactersAndItems.meteor2 = {
    name: "Meteor2",
    x: app.randomNumber(app.canvas.width - 250),
-   y: -50,
+   y: -400,
    spdX: 0,
    spdY: 2,
    width: 45,
@@ -156,7 +159,7 @@ app.charactersAndItems.meteor2 = {
 app.charactersAndItems.meteor3 = {
    name: "Meteor3",
    x: app.randomNumber(app.canvas.width - 300),
-   y: -40,
+   y: -750,
    spdX: 0,
    spdY: 1.5,
    width: 45,
@@ -279,28 +282,22 @@ app.animate = function(){
    // Steak 1
    if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak)){
       console.log("collide steak 1")
-      $(".lives li:last-child").remove();
-      if ($(".lives li").length === 0) {
-         alert("game over");
-      }
+      app.points += 100
+      $(".point-counter").text(app.points);
    };
 
    // Steak 2
    if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak2)){
       console.log("collide steak 2")
-      $(".lives li:last-child").remove();
-      if ($(".lives li").length === 0) {
-         alert("game over");
-      }
+      app.points += 100
+      $(".point-counter").text(app.points);
    };
 
    // Steak 3
    if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak3)) {
       console.log("collide steak 3")
-      $(".lives li:last-child").remove();
-      if ($(".lives li").length === 0) {
-         alert("game over");
-      }
+      app.points += 100
+      $(".point-counter").text(app.points);
    };
 
    // begin animation loop
