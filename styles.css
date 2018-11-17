@@ -222,11 +222,14 @@ form.choose-character .dino {
   width: 50px;
   margin: 0px 15px; }
 
-form.choose-character .shadow {
+form.choose-character .hide {
   display: none; }
 
 form.choose-character label:hover {
   cursor: pointer; }
+
+.disappear {
+  display: none; }
 
 input[type="submit"] {
   padding: 15px;

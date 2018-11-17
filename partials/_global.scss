@@ -60,12 +60,16 @@ form.choose-character{
       width: 50px;
       margin: 0px 15px;
    }
-   .shadow {
+   .hide {
       display: none;
    }
    label:hover {
       cursor: pointer;
    }
+}
+
+.disappear {
+   display: none;
 }
 
 input[type="submit"] {

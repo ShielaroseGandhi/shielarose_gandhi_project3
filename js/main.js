@@ -42,6 +42,11 @@ app.images.meteor3 = "./assets/meteor3.png";
 
 
 // Add dino to canvas 
+// Draw player
+app.playerImage = new Image();
+app.playerImage.src = app.images.blueDino;
+
+
 app.charactersAndItems = {};
 // Player
 app.charactersAndItems.dino = {
@@ -55,10 +60,6 @@ app.charactersAndItems.dino = {
    height: 65,
 };
 
-// Draw player
-app.playerImage = new Image();
-app.playerImage.src = app.images.redDino;
-app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
 
 
 // Move dino with arrow keys
@@ -85,7 +86,6 @@ app.charactersAndItems.moveDino = function(e){
    // Redraw dino
    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
    
-   
    // Redraw meteors
    app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y,app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
 
@@ -105,36 +105,42 @@ document.onkeydown = app.charactersAndItems.moveDino;
 
 // Random x coordinate generator for meteors and steaks
 app.randomNumber = function (maxNumber) {
-   return Math.floor((Math.random() * (maxNumber + 1)));
+   console.log(maxNumber);
+   let randomX = Math.floor((Math.random() * (maxNumber + 1)));
+   // randomX += 10;
+   // if (randomX > maxNumber) {
+   //    randomX = maxNumber - 50;
+   // }
+   return randomX
 };
 
 // Steaks
 app.charactersAndItems.steak = {
    name: "Steak1",
-   x: app.randomNumber(app.canvas.width - 100),
+   x: app.randomNumber(app.canvas.width - 50),
    y: -400,
    spdX: 0,
-   spdY: 2,
+   spdY: 1,
    width: 45,
    height: 45,
 }
 
 app.charactersAndItems.steak2 = {
    name: "Steak2",
-   x: app.randomNumber(app.canvas.width - 100),
+   x: app.randomNumber(app.canvas.width - 50),
    y: -1000,
    spdX: 0,
-   spdY: 2,
+   spdY: 1,
    width: 45,
    height: 45,
 }
 
 app.charactersAndItems.steak3 = {
    name: "Steak3",
-   x: app.randomNumber(app.canvas.width - 100),
+   x: app.randomNumber(app.canvas.width - 50),
    y: -250,
    spdX: 0,
-   spdY: 1,
+   spdY: 0.5,
    width: 45,
    height: 45,
 }
@@ -142,30 +148,30 @@ app.charactersAndItems.steak3 = {
 // Meteors
 app.charactersAndItems.meteor = {
    name: "Meteor",
-   x: app.randomNumber(app.canvas.width - 100),
+   x: app.randomNumber(app.canvas.width - 50),
    y: -600,
    spdX: 0,
-   spdY: 1,
+   spdY: 0.5,
    width: 65,
    height: 65,
 }
 
 app.charactersAndItems.meteor2 = {
    name: "Meteor2",
-   x: app.randomNumber(app.canvas.width - 100),
+   x: app.randomNumber(app.canvas.width - 50),
    y: -150,
    spdX: 0,
-   spdY: 2.5,
+   spdY: 1.5,
    width: 75,
    height: 75,
 }
 
 app.charactersAndItems.meteor3 = {
    name: "Meteor3",
-   x: app.randomNumber(app.canvas.width - 100),
+   x: app.randomNumber(app.canvas.width - 50),
    y: -1200,
    spdX: 0,
-   spdY: 1.5,
+   spdY: 0.5,
    width: 65,
    height: 65,
 }
@@ -298,42 +304,43 @@ app.animate = function(){
    // Meteor 1
    if (app.charactersAndItems.meteor.y > app.canvas.height - 50) {
       app.charactersAndItems.meteor.y = -app.canvas.height;
-      app.charactersAndItems.meteor.x = app.randomNumber(app.canvas.width - 100);
+      app.charactersAndItems.meteor.x = app.randomNumber(app.canvas.width - 50);
    }
 
    // Meteor 2
    if (app.charactersAndItems.meteor2.y > app.canvas.height - 50) {
       app.charactersAndItems.meteor2.y = -app.canvas.height;
-      app.charactersAndItems.meteor2.x = app.randomNumber(app.canvas.width - 100);
+      app.charactersAndItems.meteor2.x = app.randomNumber(app.canvas.width - 50);
    }
 
    // Meteor 3
    if (app.charactersAndItems.meteor3.y > app.canvas.height - 50) {
       app.charactersAndItems.meteor3.y = -app.canvas.height;
-      app.charactersAndItems.meteor3.x = app.randomNumber(app.canvas.width - 100);
+      app.charactersAndItems.meteor3.x = app.randomNumber(app.canvas.width - 50);
    }
 
    // boundaries for steak
    // Steak 1
    if (app.charactersAndItems.steak.y > app.canvas.height - 50) {
       app.charactersAndItems.steak.y = -app.canvas.height;
-      app.charactersAndItems.steak.x = app.randomNumber(app.canvas.width - 100);
+      app.charactersAndItems.steak.x = app.randomNumber(app.canvas.width - 50);
    }
 
    // Steak 2
    if (app.charactersAndItems.steak2.y > app.canvas.height - 50) {
       app.charactersAndItems.steak2.y = -app.canvas.height;
-      app.charactersAndItems.steak2.x = app.randomNumber(app.canvas.width - 100);
+      app.charactersAndItems.steak2.x = app.randomNumber(app.canvas.width - 50);
    }
 
    // Steak 3
    if (app.charactersAndItems.steak3.y > app.canvas.height - 50) {
       app.charactersAndItems.steak3.y = -app.canvas.height;
-      app.charactersAndItems.steak3.x = app.randomNumber(app.canvas.width - 100);
+      app.charactersAndItems.steak3.x = app.randomNumber(app.canvas.width - 50);
    }
 
    // Redraw dino
    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
+   
 };
 
 // Lose a life if hit by a meteor 
@@ -352,14 +359,60 @@ app.animate = function(){
 //    for(let mx = 0; mx < app.charactersAndItems.meteor.x; mx++){
 //       console.log("working4");
 //    };
-
 // };
+
+dinoChecked = function(dinoNumber){
+   let shadowNumber = ".shadow" + dinoNumber;
+   if(dinoNumber == 1){
+      $(".shadow1").removeClass("hide");
+      $(".shadow2").addClass("hide");
+      $(".shadow3").addClass("hide");
+      $(".shadow4").addClass("hide");
+      app.playerImage.src = app.images.blueDino;
+   } else if (dinoNumber == 2) {
+      $(".shadow1").addClass("hide");
+      $(".shadow2").removeClass("hide");
+      $(".shadow3").addClass("hide");
+      $(".shadow4").addClass("hide");
+      app.playerImage.src = app.images.redDino;
+   } else if (dinoNumber == 3) {
+      $(".shadow1").addClass("hide");
+      $(".shadow2").addClass("hide");
+      $(".shadow3").removeClass("hide");
+      $(".shadow4").addClass("hide");
+      app.playerImage.src = app.images.yellowDino;
+   } else if (dinoNumber == 4) {
+      $(".shadow1").addClass("hide");
+      $(".shadow2").addClass("hide");
+      $(".shadow3").addClass("hide");
+      $(".shadow4").removeClass("hide");
+      app.playerImage.src = app.images.greenDino;
+   }
+
+};
+
+// $(".start").on("click", function (event) {
+//    event.preventDefault();
+//    $(".start-game").addClass("disappear");
+// });
+
+
+$(".start").on("click", function(event){
+   event.preventDefault();
+   app.animate();
+   $(".start-game").addClass("disappear");
+   app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
+   
+});
 
 app.init = function(){
    app.charactersAndItems.move;
-   app.animate();
+   // app.animate();
    // app.loseALife();
 };
+
+
+
 
 // Make dino move right and left using arrow keys
 // app.moveDino = function(e){
@@ -414,11 +467,9 @@ app.init = function(){
 // };
 
 
-
-
 $(function(){
    app.init();
-   
+
 });
 
 // Pop-up comes up on load on top of the game asking the player to choose their dino and select start
