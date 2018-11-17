@@ -5,7 +5,7 @@ html {
 body {
    font-family: 'Press Start 2P', sans-serif;
    font-size: 2rem;
-   background: #272727;
+   background: #f9f9f9;
 }
 
 .game-border {
@@ -30,24 +30,20 @@ body {
       align-items: center;
       li {
          margin: 0 5px;
+         width: 40px;
       }
    }
 }
 
-img {
-   width: 30px;
-}
-
 .pop-up {
-   width: 400px;
+   max-width: 400px;
+   width: 100%;
    margin: 0 auto;
-}
-
-.start-game {
    position: absolute;
    top: 200px;
    left: calc(50% - 200px);
    background: lightgrey;
+   box-shadow: 2px 2px 0 black, 4px 4px 0 black, 6px 6px 0 black;
 }
 
 form.choose-character{
@@ -56,30 +52,57 @@ form.choose-character{
       justify-content: center;
       padding-bottom: 25px;
    }
+   label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;      
+      margin: 0 15px;
+      &:hover {
+         cursor: pointer;
+      }
+   }
+   .dino-shadow {
+      width: 50px;
+   }
    .dino {
       width: 50px;
-      margin: 0px 15px;
-   }
-   .hide {
-      display: none;
-   }
-   label:hover {
-      cursor: pointer;
    }
 }
 
-.disappear {
+.hide,
+.disappear,
+input[type="radio"] {
    display: none;
 }
 
 input[type="submit"] {
    padding: 15px;
    width: 100%;
+   background: #3887fd;
+   border: none;
+   border-top: 1px solid black;
+   &:hover {
+      background: #3278e2;
+   }
 }
 
-input[type="radio"] {
-   visibility: hidden;
+.game-over {
+   display: none;
+   p {
+      padding: 20px 0;
+   }  
 }
+
+.appear {
+   display: block;
+}
+
+
+
+
+
+
+
 
 .instructions{
    border: 2px solid black;

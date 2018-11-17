@@ -104,7 +104,8 @@ app.charactersAndItems.moveDino = function(e){
 document.onkeydown = app.charactersAndItems.moveDino;
 
 // Random x coordinate generator for meteors and steaks
-app.randomNumber = function (maxNumber) {
+
+app.randomNumber = function(maxNumber) {
    console.log(maxNumber);
    let randomX = Math.floor((Math.random() * (maxNumber + 1)));
    // randomX += 10;
@@ -118,9 +119,9 @@ app.randomNumber = function (maxNumber) {
 app.charactersAndItems.steak = {
    name: "Steak1",
    x: app.randomNumber(app.canvas.width - 50),
-   y: -400,
+   y: -800,
    spdX: 0,
-   spdY: 1,
+   spdY: 2,
    width: 45,
    height: 45,
 }
@@ -130,7 +131,7 @@ app.charactersAndItems.steak2 = {
    x: app.randomNumber(app.canvas.width - 50),
    y: -1000,
    spdX: 0,
-   spdY: 1,
+   spdY: 2,
    width: 45,
    height: 45,
 }
@@ -140,7 +141,7 @@ app.charactersAndItems.steak3 = {
    x: app.randomNumber(app.canvas.width - 50),
    y: -250,
    spdX: 0,
-   spdY: 0.5,
+   spdY: 1.5,
    width: 45,
    height: 45,
 }
@@ -151,7 +152,7 @@ app.charactersAndItems.meteor = {
    x: app.randomNumber(app.canvas.width - 50),
    y: -600,
    spdX: 0,
-   spdY: 0.5,
+   spdY: 1.5,
    width: 65,
    height: 65,
 }
@@ -159,9 +160,9 @@ app.charactersAndItems.meteor = {
 app.charactersAndItems.meteor2 = {
    name: "Meteor2",
    x: app.randomNumber(app.canvas.width - 50),
-   y: -150,
+   y: -500,
    spdX: 0,
-   spdY: 1.5,
+   spdY: 2,
    width: 75,
    height: 75,
 }
@@ -171,7 +172,7 @@ app.charactersAndItems.meteor3 = {
    x: app.randomNumber(app.canvas.width - 50),
    y: -1200,
    spdX: 0,
-   spdY: 0.5,
+   spdY: 1,
    width: 65,
    height: 65,
 }
@@ -227,7 +228,8 @@ app.animate = function(){
       console.log("collide meteor 1")
       $(".lives li:last-child").remove();
       if($(".lives li").length === 0){
-         // alert("game over");
+         $(".game-over").addClass("appear");
+         return false
       } // remove a life every time a meteor and dino collide
       app.charactersAndItems.meteor.y = -app.canvas.height; // make meteor disappear once collision happens
    };
@@ -237,7 +239,8 @@ app.animate = function(){
       console.log("collide meteor 2")
       $(".lives li:last-child").remove();
       if ($(".lives li").length === 0) {
-         // alert("game over");
+         $(".game-over").addClass("appear");
+         return false
       } // remove a life every time a meteor and dino collide
       app.charactersAndItems.meteor2.y = -app.canvas.height; // make meteor disappear once collision happens
 
@@ -248,7 +251,8 @@ app.animate = function(){
       console.log("collide meteor 3")
       $(".lives li:last-child").remove();
       if ($(".lives li").length === 0) {
-         // alert("game over");
+         $(".game-over").addClass("appear");
+         return false
       } // remove a life every time a meteor and dino collide
       app.charactersAndItems.meteor3.y = -app.canvas.height; // make meteor disappear once collision happens
    };
@@ -343,24 +347,7 @@ app.animate = function(){
    
 };
 
-// Lose a life if hit by a meteor 
-// app.loseALife = function(){
-//    for(let y = 0; y < app.charactersAndItems.dino.y; y++){
-//       console.log("working1")
-//       // console.log(y)
-//    };
-//    for(let x = 0; x < app.charactersAndItems.dino.x; x++){
-//       console.log("working2");
-//    };
-//    for (let my = -47; my > app.charactersAndItems.meteor.y && my < app.canvas.height; my++){
-//       console.log("working3");
-//       // console.log(app.charactersAndItems.meteor.y)
-//    };
-//    for(let mx = 0; mx < app.charactersAndItems.meteor.x; mx++){
-//       console.log("working4");
-//    };
-// };
-
+// Find the checked dino and display a shadow underneath
 dinoChecked = function(dinoNumber){
    let shadowNumber = ".shadow" + dinoNumber;
    if(dinoNumber == 1){
@@ -388,23 +375,20 @@ dinoChecked = function(dinoNumber){
       $(".shadow4").removeClass("hide");
       app.playerImage.src = app.images.greenDino;
    }
-
 };
 
-// $(".start").on("click", function (event) {
-//    event.preventDefault();
-//    $(".start-game").addClass("disappear");
-// });
-
-
+// Remove default of submit button on start
+// Begin animations only when start button is clicked
+// Hide start-game pop-up on start and draw the selected dino on canvas 
 $(".start").on("click", function(event){
    event.preventDefault();
    app.animate();
    $(".start-game").addClass("disappear");
    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
-   
 });
 
+
+// Init
 app.init = function(){
    app.charactersAndItems.move;
    // app.animate();
@@ -439,37 +423,8 @@ app.init = function(){
 
 
 
-// // Steaks fall out of top of canvas 
-// // Steaks
-// app.steak = {
-//    posX: 250,
-//    posY: 250,
-//    spdX: 0,
-//    spdY: 10,
-// };
-
-
-// app.steak.posX += app.steak.spdX;
-// app.steak.posY += app.steak.spdY;
-// app.steak.image = new Image();
-// app.steak.image.src = app.images.steak;
-// app.ctx.drawImage(app.steak.image, app.steak.posX, app.steak.posY);
-
-
-
-
-// // Meteors
-// app.meteor = {
-//    posX: 150,
-//    posY: 150,
-//    spdX: 0,
-//    spdY: 15,
-// };
-
-
 $(function(){
    app.init();
-
 });
 
 // Pop-up comes up on load on top of the game asking the player to choose their dino and select start

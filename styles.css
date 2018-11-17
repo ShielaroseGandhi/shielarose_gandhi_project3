@@ -163,7 +163,7 @@ html {
 body {
   font-family: 'Press Start 2P', sans-serif;
   font-size: 2rem;
-  background: #272727; }
+  background: #f9f9f9; }
 
 .game-border {
   border: 2px solid black; }
@@ -194,20 +194,19 @@ body {
     -ms-flex-align: center;
     align-items: center; }
     .top-bar ul li {
-      margin: 0 5px; }
-
-img {
-  width: 30px; }
+      margin: 0 5px;
+      width: 40px; }
 
 .pop-up {
-  width: 400px;
-  margin: 0 auto; }
-
-.start-game {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
   position: absolute;
   top: 200px;
   left: calc(50% - 200px);
-  background: lightgrey; }
+  background: lightgrey;
+  -webkit-box-shadow: 2px 2px 0 black, 4px 4px 0 black, 6px 6px 0 black;
+  box-shadow: 2px 2px 0 black, 4px 4px 0 black, 6px 6px 0 black; }
 
 form.choose-character .characters {
   display: -webkit-box;
@@ -218,25 +217,48 @@ form.choose-character .characters {
   justify-content: center;
   padding-bottom: 25px; }
 
+form.choose-character label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 15px; }
+  form.choose-character label:hover {
+    cursor: pointer; }
+
+form.choose-character .dino-shadow {
+  width: 50px; }
+
 form.choose-character .dino {
-  width: 50px;
-  margin: 0px 15px; }
+  width: 50px; }
 
-form.choose-character .hide {
-  display: none; }
-
-form.choose-character label:hover {
-  cursor: pointer; }
-
-.disappear {
+.hide,
+.disappear,
+input[type="radio"] {
   display: none; }
 
 input[type="submit"] {
   padding: 15px;
-  width: 100%; }
+  width: 100%;
+  background: #3887fd;
+  border: none;
+  border-top: 1px solid black; }
+  input[type="submit"]:hover {
+    background: #3278e2; }
 
-input[type="radio"] {
-  visibility: hidden; }
+.game-over {
+  display: none; }
+  .game-over p {
+    padding: 20px 0; }
+
+.appear {
+  display: block; }
 
 .instructions {
   border: 2px solid black;
