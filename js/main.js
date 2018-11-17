@@ -221,7 +221,7 @@ app.animate = function(){
       console.log("collide meteor 1")
       $(".lives li:last-child").remove();
       if($(".lives li").length === 0){
-         alert("game over");
+         // alert("game over");
       } // remove a life every time a meteor and dino collide
       app.charactersAndItems.meteor.y = -app.canvas.height; // make meteor disappear once collision happens
    };
@@ -231,7 +231,7 @@ app.animate = function(){
       console.log("collide meteor 2")
       $(".lives li:last-child").remove();
       if ($(".lives li").length === 0) {
-         alert("game over");
+         // alert("game over");
       } // remove a life every time a meteor and dino collide
       app.charactersAndItems.meteor2.y = -app.canvas.height; // make meteor disappear once collision happens
 
@@ -242,7 +242,7 @@ app.animate = function(){
       console.log("collide meteor 3")
       $(".lives li:last-child").remove();
       if ($(".lives li").length === 0) {
-         alert("game over");
+         // alert("game over");
       } // remove a life every time a meteor and dino collide
       app.charactersAndItems.meteor3.y = -app.canvas.height; // make meteor disappear once collision happens
    };
@@ -418,6 +418,7 @@ app.init = function(){
 
 $(function(){
    app.init();
+   
 });
 
 // Pop-up comes up on load on top of the game asking the player to choose their dino and select start

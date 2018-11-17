@@ -184,7 +184,8 @@ body {
   justify-content: space-between;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center; }
+  align-items: center;
+  position: relative; }
   .top-bar ul {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -199,39 +200,42 @@ img {
   width: 30px; }
 
 .pop-up {
-  border: 2px solid black;
-  width: 60%;
+  width: 400px;
   margin: 0 auto; }
 
-form.choose-character {
+.start-game {
+  position: absolute;
+  top: 200px;
+  left: calc(50% - 200px);
+  background: lightgrey; }
+
+form.choose-character .characters {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  height: 250px; }
-  form.choose-character .characters {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center; }
-  form.choose-character img {
-    width: 50px; }
-  form.choose-character label:hover {
-    cursor: pointer; }
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-bottom: 25px; }
+
+form.choose-character .dino {
+  width: 50px;
+  margin: 0px 15px; }
+
+form.choose-character .shadow {
+  display: none; }
+
+form.choose-character label:hover {
+  cursor: pointer; }
 
 input[type="submit"] {
-  border: 1px solid black;
   padding: 15px;
-  background-color: royalblue;
   width: 100%; }
 
 input[type="radio"] {
   visibility: hidden; }
+
+.instructions {
+  border: 2px solid black;
+  font-size: 1.6rem;
+  font-size: 16px; }
