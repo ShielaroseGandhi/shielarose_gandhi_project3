@@ -162,10 +162,11 @@ html {
 
 body {
   font-family: 'Press Start 2P', sans-serif;
-  font-size: 2rem; }
+  font-size: 2rem;
+  background: #272727; }
 
-canvas {
-  border: 1px solid black; }
+.game-border {
+  border: 2px solid black; }
 
 .wrapper {
   max-width: 500px;
@@ -173,7 +174,7 @@ canvas {
   margin: 0 auto; }
 
 .top-bar {
-  border: 2px solid black;
+  border-bottom: 2px solid black;
   padding: 0 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -187,9 +188,12 @@ canvas {
   .top-bar ul {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
     .top-bar ul li {
-      margin: 8px 5px 0px 5px; }
+      margin: 0 5px; }
 
 img {
   width: 30px; }

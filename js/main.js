@@ -146,8 +146,8 @@ app.charactersAndItems.meteor = {
    y: -600,
    spdX: 0,
    spdY: 1,
-   width: 45,
-   height: 45,
+   width: 65,
+   height: 65,
 }
 
 app.charactersAndItems.meteor2 = {
@@ -156,8 +156,8 @@ app.charactersAndItems.meteor2 = {
    y: -150,
    spdX: 0,
    spdY: 2.5,
-   width: 45,
-   height: 45,
+   width: 75,
+   height: 75,
 }
 
 app.charactersAndItems.meteor3 = {
@@ -166,8 +166,8 @@ app.charactersAndItems.meteor3 = {
    y: -1200,
    spdX: 0,
    spdY: 1.5,
-   width: 45,
-   height: 45,
+   width: 65,
+   height: 65,
 }
 
 // Collision function for meteor
@@ -222,7 +222,8 @@ app.animate = function(){
       $(".lives li:last-child").remove();
       if($(".lives li").length === 0){
          alert("game over");
-      }
+      } // remove a life every time a meteor and dino collide
+      app.charactersAndItems.meteor.y = -app.canvas.height; // make meteor disappear once collision happens
    };
 
    // Meteor 2
@@ -231,7 +232,8 @@ app.animate = function(){
       $(".lives li:last-child").remove();
       if ($(".lives li").length === 0) {
          alert("game over");
-      }
+      } // remove a life every time a meteor and dino collide
+      app.charactersAndItems.meteor2.y = -app.canvas.height; // make meteor disappear once collision happens
 
    };
 
@@ -241,7 +243,8 @@ app.animate = function(){
       $(".lives li:last-child").remove();
       if ($(".lives li").length === 0) {
          alert("game over");
-      }
+      } // remove a life every time a meteor and dino collide
+      app.charactersAndItems.meteor3.y = -app.canvas.height; // make meteor disappear once collision happens
    };
 
    // Draw steaks
@@ -268,21 +271,24 @@ app.animate = function(){
    if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak)){
       console.log("collide steak 1")
       app.points += 100
-      $(".point-counter").text(app.points);
+      $(".point-counter").text(app.points); // add 100 points every time steak and dino collide
+      app.charactersAndItems.steak.y = -app.canvas.height; // make steak restart once collision happens
    };
 
    // Steak 2
    if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak2)){
       console.log("collide steak 2")
       app.points += 100
-      $(".point-counter").text(app.points);
+      $(".point-counter").text(app.points); // add 100 points every time steak and dino collide
+      app.charactersAndItems.steak2.y = -app.canvas.height; // make steak restart once collision happens
    };
 
    // Steak 3
    if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak3)) {
       console.log("collide steak 3")
       app.points += 100
-      $(".point-counter").text(app.points);
+      $(".point-counter").text(app.points); // add 100 points every time steak and dino collide
+      app.charactersAndItems.steak3.y = -app.canvas.height; // make steak restart once collision happens
    };
 
    // begin animation loop
