@@ -197,6 +197,37 @@ body {
       margin: 0 5px;
       width: 40px; }
 
+.dino-controls {
+  height: 50px;
+  border: 2px solid black;
+  border-top: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .dino-controls .left,
+  .dino-controls .right {
+    background: tomato;
+    width: 50%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .dino-controls .left:hover,
+    .dino-controls .right:hover {
+      background-color: #e95a40; }
+  .dino-controls .left {
+    border-right: 1px solid black; }
+  .dino-controls .right {
+    border-left: 1px solid black; }
+  .dino-controls i {
+    font-size: 4rem; }
+
 .pop-up {
   max-width: 400px;
   width: 100%;
