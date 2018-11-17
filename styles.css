@@ -165,17 +165,23 @@ body {
   font-size: 2rem;
   background: #f9f9f9; }
 
+.wrapper {
+  max-width: 550px;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%; }
+
+canvas {
+  width: 100%;
+  height: calc(100vh - (70px + 65px + 6px)); }
+
 .game-border {
   border: 2px solid black; }
 
-.wrapper {
-  max-width: 500px;
-  text-align: center;
-  margin: 0 auto; }
-
 .top-bar {
   border-bottom: 2px solid black;
-  padding: 0 20px;
+  height: 70px;
+  padding: 0 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -185,7 +191,8 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  position: relative; }
+  position: relative;
+  background: #8370fa; }
   .top-bar ul {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -198,15 +205,14 @@ body {
       width: 40px; }
 
 .dino-controls {
-  height: 50px;
-  border: 2px solid black;
-  border-top: none;
+  height: 65px;
+  border-top: 2px solid black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
   .dino-controls .left,
   .dino-controls .right {
-    background: tomato;
+    background: #8370fa;
     width: 50%;
     height: 100%;
     display: -webkit-box;
@@ -221,7 +227,7 @@ body {
     color: black; }
     .dino-controls .left:hover,
     .dino-controls .right:hover {
-      background-color: #e95a40; }
+      background-color: #a8a8f8; }
   .dino-controls .left {
     border-right: 1px solid black; }
   .dino-controls .right {
@@ -234,7 +240,7 @@ body {
   width: 100%;
   margin: 0 auto;
   position: absolute;
-  top: 200px;
+  top: calc(50vh - 100px);
   left: calc(50% - 200px);
   background: lightgrey;
   -webkit-box-shadow: 2px 2px 0 black, 4px 4px 0 black, 6px 6px 0 black;
@@ -278,11 +284,11 @@ input[type="radio"] {
 input[type="submit"] {
   padding: 15px;
   width: 100%;
-  background: #3887fd;
+  background: #8370fa;
   border: none;
   border-top: 1px solid black; }
   input[type="submit"]:hover {
-    background: #3278e2; }
+    background: #a8a8f8; }
 
 .game-over {
   display: none; }
@@ -295,4 +301,5 @@ input[type="submit"] {
 .instructions {
   border: 2px solid black;
   font-size: 1.6rem;
-  font-size: 16px; }
+  font-size: 16px;
+  display: none; }

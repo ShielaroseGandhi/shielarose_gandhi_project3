@@ -3,17 +3,29 @@ const app = {}
 // Create canvas
 app.canvas = document.getElementById("canvas");
 app.ctx = app.canvas.getContext("2d");
-app.canvas.width = 500;
-app.canvas.height = 500;
-
+app.canvas.width = canvas.clientWidth;
+app.canvas.height = canvas.clientHeight;
 app.ctx.imageSmoothingEnabled = false;
+
+// Resize canvas when window is resized
+app.resizeCanvas = function(){
+   app.displayWidth = canvas.clientWidth;
+   app.displayHeight = canvas.clientHeight;
+
+   // Check if the canvas is not the same size.
+   if (app.canvas.width != displayWidth 
+      || app.canvas.height != displayHeight) {
+      // Make the canvas the same size
+      app.canvas.width = displayWidth;
+      app.canvas.height = displayHeight;
+   }
+};
+
 
 // Game start setup
 // Points
 app.points = 0;
 $(".point-counter").text(app.points);
-
-
 
 // Array of images
 app.images = [];
@@ -60,101 +72,7 @@ app.charactersAndItems.dino = {
    height: 65,
 };
 
-// app.arrowInterval
-
-// Move dino with arrow keys on screen
-$(".right").on("click", function(e) {
-   e.preventDefault();
-   app.charactersAndItems.dino.x += app.charactersAndItems.dino.spdX;
-   // Dino cannot go out of bounds
-   if (app.charactersAndItems.dino.x < 0) {
-      app.charactersAndItems.dino.x = 0;
-   }
-
-   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
-      app.charactersAndItems.dino.x = app.canvas.width - 70;
-   }
-});
-
-$(".left").on("click", function (e) {
-   e.preventDefault();
-   app.charactersAndItems.dino.x -= app.charactersAndItems.dino.spdX;
-   // Dino cannot go out of bounds
-   if (app.charactersAndItems.dino.x < 0) {
-      app.charactersAndItems.dino.x = 0;
-   }
-
-   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
-      app.charactersAndItems.dino.x = app.canvas.width - 70;
-   }
-});
-
-$(document).keypress(function(e) {
-   if (e.keyCode == 13) {
-      app.animate();
-      $(".start-game").addClass("disappear");
-      app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
-   }
-   if (e.keyCode == 39) {
-      app.charactersAndItems.dino.x += app.charactersAndItems.dino.spdX;
-   } // right arrow
-
-   if (e.keyCode == 37) {
-      app.charactersAndItems.dino.x -= app.charactersAndItems.dino.spdX;
-   } // left arrow
-
-   // Dino cannot go out of bounds
-   if (app.charactersAndItems.dino.x < 0) {
-      app.charactersAndItems.dino.x = 0;
-   }
-
-   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
-      app.charactersAndItems.dino.x = app.canvas.width - 70;
-   }
-});
-
-
-// Move dino with arrow keys on keyboard
-// app.charactersAndItems.moveDino = function(e){
-//    // if (e.keyCode == 39) {
-//    //    app.charactersAndItems.dino.x += app.charactersAndItems.dino.spdX;
-//    // } // right arrow
-   
-//    // if (e.keyCode == 37) {
-//    //    app.charactersAndItems.dino.x -= app.charactersAndItems.dino.spdX;
-//    // } // left arrow
-   
-//    // // Dino cannot go out of bounds
-//    // if (app.charactersAndItems.dino.x < 0) {
-//    //    app.charactersAndItems.dino.x = 0;
-//    // }
-   
-//    // if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
-//    //    app.charactersAndItems.dino.x = app.canvas.width - 70;
-//    // }
-//    // Clear canvas 
-//    app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
-   
-//    // Redraw dino
-//    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
-   
-//    // Redraw meteors
-//    app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y,app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
-
-//    app.meteor2 = app.ctx.drawImage(app.meteor2Image, app.charactersAndItems.meteor2.x, app.charactersAndItems.meteor2.y, app.charactersAndItems.meteor2.width, app.charactersAndItems.meteor2.height);
-
-//    app.meteor3 = app.ctx.drawImage(app.meteor3Image, app.charactersAndItems.meteor3.x,app.charactersAndItems.meteor3.y, app.charactersAndItems.meteor3.width, app.charactersAndItems.meteor3.height);
-
-//    // Redraw steaks
-//    app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
-
-//    app.steak2 = app.ctx.drawImage(app.steak2Image, app.charactersAndItems.steak2.x, app.charactersAndItems.steak2.y, app.charactersAndItems.steak2.width, app.charactersAndItems.steak2.height);
-
-//    app.steak3 = app.ctx.drawImage(app.steak3Image, app.charactersAndItems.steak3.x, app.charactersAndItems.steak3.y, app.charactersAndItems.steak3.width, app.charactersAndItems.steak3.height);
-// };
-
 // Random x coordinate generator for meteors and steaks
-
 app.randomNumber = function(maxNumber) {
    console.log(maxNumber);
    let randomX = Math.floor((Math.random() * (maxNumber + 1)));
@@ -250,6 +168,59 @@ app.steakCollision = function (dino, steak) {
    } else
       return false;
 };
+
+// Move dino with arrow keys on screen
+$(".right").on("click", function (e) {
+   e.preventDefault();
+   app.charactersAndItems.dino.x += app.charactersAndItems.dino.spdX;
+   // Dino cannot go out of bounds
+   if (app.charactersAndItems.dino.x < 0) {
+      app.charactersAndItems.dino.x = 0;
+   }
+
+   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
+      app.charactersAndItems.dino.x = app.canvas.width - 70;
+   }
+});
+
+$(".left").on("click", function (e) {
+   e.preventDefault();
+   app.charactersAndItems.dino.x -= app.charactersAndItems.dino.spdX;
+   // Dino cannot go out of bounds
+   if (app.charactersAndItems.dino.x < 0) {
+      app.charactersAndItems.dino.x = 0;
+   }
+
+   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
+      app.charactersAndItems.dino.x = app.canvas.width - 70;
+   }
+});
+
+// Keyboard functions - use arrow keys and click enter to start game
+$(document).keypress(function (e) {
+   if (e.keyCode == 13) {
+      app.animate();
+      $(".start-game").addClass("disappear");
+      app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
+   } // start game by clicking enter key
+
+   if (e.keyCode == 39) {
+      app.charactersAndItems.dino.x += app.charactersAndItems.dino.spdX;
+   } // right arrow
+
+   if (e.keyCode == 37) {
+      app.charactersAndItems.dino.x -= app.charactersAndItems.dino.spdX;
+   } // left arrow
+
+   // Dino cannot go out of bounds
+   if (app.charactersAndItems.dino.x < 0) {
+      app.charactersAndItems.dino.x = 0;
+   }
+
+   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
+      app.charactersAndItems.dino.x = app.canvas.width - 70;
+   }
+});
       
 // Animate meteors
 app.animate = function(){
