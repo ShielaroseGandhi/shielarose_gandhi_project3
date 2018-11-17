@@ -60,48 +60,98 @@ app.charactersAndItems.dino = {
    height: 65,
 };
 
+// app.arrowInterval
 
-
-// Move dino with arrow keys
-app.charactersAndItems.moveDino = function(e){
-   if (e.keyCode == 39) {
-      app.charactersAndItems.dino.x += app.charactersAndItems.dino.spdX;
-   } // right arrow
-   
-   if (e.keyCode == 37) {
-      app.charactersAndItems.dino.x -= app.charactersAndItems.dino.spdX;
-   } // left arrow
-   
+// Move dino with arrow keys on screen
+$(".right").on("click", function(e) {
+   e.preventDefault();
+   app.charactersAndItems.dino.x += app.charactersAndItems.dino.spdX;
    // Dino cannot go out of bounds
    if (app.charactersAndItems.dino.x < 0) {
       app.charactersAndItems.dino.x = 0;
    }
-   
+
    if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
       app.charactersAndItems.dino.x = app.canvas.width - 70;
    }
-   // Clear canvas 
-   app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
+});
+
+$(".left").on("click", function (e) {
+   e.preventDefault();
+   app.charactersAndItems.dino.x -= app.charactersAndItems.dino.spdX;
+   // Dino cannot go out of bounds
+   if (app.charactersAndItems.dino.x < 0) {
+      app.charactersAndItems.dino.x = 0;
+   }
+
+   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
+      app.charactersAndItems.dino.x = app.canvas.width - 70;
+   }
+});
+
+$(document).keypress(function(e) {
+   if (e.keyCode == 13) {
+      app.animate();
+      $(".start-game").addClass("disappear");
+      app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
+   }
+   if (e.keyCode == 39) {
+      app.charactersAndItems.dino.x += app.charactersAndItems.dino.spdX;
+   } // right arrow
+
+   if (e.keyCode == 37) {
+      app.charactersAndItems.dino.x -= app.charactersAndItems.dino.spdX;
+   } // left arrow
+
+   // Dino cannot go out of bounds
+   if (app.charactersAndItems.dino.x < 0) {
+      app.charactersAndItems.dino.x = 0;
+   }
+
+   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
+      app.charactersAndItems.dino.x = app.canvas.width - 70;
+   }
+});
+
+
+// Move dino with arrow keys on keyboard
+// app.charactersAndItems.moveDino = function(e){
+//    // if (e.keyCode == 39) {
+//    //    app.charactersAndItems.dino.x += app.charactersAndItems.dino.spdX;
+//    // } // right arrow
    
-   // Redraw dino
-   app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
+//    // if (e.keyCode == 37) {
+//    //    app.charactersAndItems.dino.x -= app.charactersAndItems.dino.spdX;
+//    // } // left arrow
    
-   // Redraw meteors
-   app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y,app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
+//    // // Dino cannot go out of bounds
+//    // if (app.charactersAndItems.dino.x < 0) {
+//    //    app.charactersAndItems.dino.x = 0;
+//    // }
+   
+//    // if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
+//    //    app.charactersAndItems.dino.x = app.canvas.width - 70;
+//    // }
+//    // Clear canvas 
+//    app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
+   
+//    // Redraw dino
+//    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
+   
+//    // Redraw meteors
+//    app.meteor = app.ctx.drawImage(app.meteorImage, app.charactersAndItems.meteor.x, app.charactersAndItems.meteor.y,app.charactersAndItems.meteor.width, app.charactersAndItems.meteor.height);
 
-   app.meteor2 = app.ctx.drawImage(app.meteor2Image, app.charactersAndItems.meteor2.x, app.charactersAndItems.meteor2.y, app.charactersAndItems.meteor2.width, app.charactersAndItems.meteor2.height);
+//    app.meteor2 = app.ctx.drawImage(app.meteor2Image, app.charactersAndItems.meteor2.x, app.charactersAndItems.meteor2.y, app.charactersAndItems.meteor2.width, app.charactersAndItems.meteor2.height);
 
-   app.meteor3 = app.ctx.drawImage(app.meteor3Image, app.charactersAndItems.meteor3.x,app.charactersAndItems.meteor3.y, app.charactersAndItems.meteor3.width, app.charactersAndItems.meteor3.height);
+//    app.meteor3 = app.ctx.drawImage(app.meteor3Image, app.charactersAndItems.meteor3.x,app.charactersAndItems.meteor3.y, app.charactersAndItems.meteor3.width, app.charactersAndItems.meteor3.height);
 
-   // Redraw steaks
-   app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
+//    // Redraw steaks
+//    app.steak = app.ctx.drawImage(app.steakImage, app.charactersAndItems.steak.x, app.charactersAndItems.steak.y, app.charactersAndItems.steak.width, app.charactersAndItems.steak.height);
 
-   app.steak2 = app.ctx.drawImage(app.steak2Image, app.charactersAndItems.steak2.x, app.charactersAndItems.steak2.y, app.charactersAndItems.steak2.width, app.charactersAndItems.steak2.height);
+//    app.steak2 = app.ctx.drawImage(app.steak2Image, app.charactersAndItems.steak2.x, app.charactersAndItems.steak2.y, app.charactersAndItems.steak2.width, app.charactersAndItems.steak2.height);
 
-   app.steak3 = app.ctx.drawImage(app.steak3Image, app.charactersAndItems.steak3.x, app.charactersAndItems.steak3.y, app.charactersAndItems.steak3.width, app.charactersAndItems.steak3.height);
-};
-
-document.onkeydown = app.charactersAndItems.moveDino;
+//    app.steak3 = app.ctx.drawImage(app.steak3Image, app.charactersAndItems.steak3.x, app.charactersAndItems.steak3.y, app.charactersAndItems.steak3.width, app.charactersAndItems.steak3.height);
+// };
 
 // Random x coordinate generator for meteors and steaks
 
@@ -188,6 +238,8 @@ app.meteorCollision = function (dino, meteor) {
    return false;
 };
 
+// && (meteor.y === dino.y)
+
 // Collision function for steak
 app.steakCollision = function (dino, steak) {
    if (!(steak.y === dino.y)) {
@@ -243,7 +295,6 @@ app.animate = function(){
          return false
       } // remove a life every time a meteor and dino collide
       app.charactersAndItems.meteor2.y = -app.canvas.height; // make meteor disappear once collision happens
-
    };
 
    // Meteor 3
@@ -388,9 +439,12 @@ $(".start").on("click", function(event){
 });
 
 
+
+
+
 // Init
 app.init = function(){
-   app.charactersAndItems.move;
+   // app.charactersAndItems.move;
    // app.animate();
    // app.loseALife();
 };

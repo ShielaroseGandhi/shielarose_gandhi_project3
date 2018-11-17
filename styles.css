@@ -217,7 +217,8 @@ body {
     justify-content: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center; }
+    align-items: center;
+    color: black; }
     .dino-controls .left:hover,
     .dino-controls .right:hover {
       background-color: #e95a40; }
