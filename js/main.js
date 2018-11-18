@@ -414,6 +414,16 @@ $(".start").on("click", function(event){
    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
 });
 
+$(".instructions-open").on("click", function(event){
+   event.preventDefault();
+   $(".instructions-overlay").addClass("appear");
+});
+
+$(".instructions-close").on("click", function(event) {
+   event.preventDefault();
+   $(".instructions-overlay").removeClass("appear");
+});
+
 // Reload page if play-again is clicked
 $(".play-again").on("click", function(event){
    event.preventDefault();

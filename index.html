@@ -5,8 +5,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Meateor</title>
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -35,17 +35,24 @@
          <canvas id="canvas"></canvas>
          <div class="dino-controls">
             <a href="" class="left">
-               <i class="fas fa-long-arrow-alt-left arrow arrow-left"></i>
+               <
             </a>
             <a href="" class="right">
-               <i class="fas fa-long-arrow-alt-right arrow arrow-right"></i>
+               >
             </a>
          </div>
       </div>
-      
+
       <div class="pop-up start-game">
+         <div class="instructions-overlay">
+            <button class="instructions-close">x</button>
+            <p>Catch the steaks and avoid the meteors to keep them from going extinct!</p>
+            <p>Use the arrow keys on your keyboard or on the screen to move your dino</p>
+            <p class="start-instructions">Press space or enter to start once you've chosen your dino</p>
+         </div>
          <form action"" class="choose-character">
             <h1>Meateor</h1>
+            <button class="instructions-open">i</button> 
             <p>Choose your dino:</p>
             <!-- DINOS COURTESY OF  @ScissorMarks https://arks.itch.io/dino-characters -->
             <div class="characters">
@@ -76,10 +83,6 @@
             <label for="submit" class="visuallyhidden"></label>
             <input type="submit" name="start" value="Start" id="start" class="start">
          </form>
-      </div>
-      <div class="instructions">
-         <p>Use the arrow keys to move your dino</p>
-         <p>Catch the steaks and avoid the meteors to keep them from going extinct!</p>
       </div>
       <div class="pop-up game-over">
          <p>Extinct!</p>
