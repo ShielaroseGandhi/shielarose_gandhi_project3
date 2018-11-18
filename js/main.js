@@ -209,7 +209,7 @@ $(".left").on("click", function (e) {
 // Keyboard functions - use arrow keys and click enter to start game
 $(document).keydown(function (e) {
    // start game by clicking enter key
-   if (e.keyCode == 13) {
+   if (e.keyCode == 13 || e.keyCode == 32) {
       app.animate();
       $(".start-game").addClass("disappear");
       app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
@@ -375,8 +375,8 @@ app.animate = function(){
 };
 
 // Find the checked dino and display a shadow underneath
-app.dinoChecked = function(dinoNumber){
-   let shadowNumber = ".shadow" + dinoNumber;
+dinoChecked = function(dinoNumber){
+   app.shadowNumber = ".shadow" + dinoNumber;
    if(dinoNumber == 1){
       $(".shadow1").removeClass("hide");
       $(".shadow2").addClass("hide");
@@ -434,33 +434,6 @@ $(document).keydown(function(e){
 app.init = function(){
  dinoChecked();
 };
-
-
-
-
-// Make dino move right and left using arrow keys
-// app.moveDino = function(e){
-//    if(e.keyCode == 39) {
-//       app.dino.posX += app.dino.spdX;
-//    } // right arrow
-
-//    if(e.keyCode == 37) {
-//       app.dino.posX -= app.dino.spdX;
-//    } // left arrow
-
-//    // Dino cannot go out of bounds
-//    if(app.dino.posX < 0) {
-//       app.dino.posX = 0;
-//    }
-
-//    if(app.dino.posX > app.canvas.width - 80) {
-//       app.dino.posX = app.canvas.width - 80;
-//    }
-
-//    app.ctx.clearRect(0, 0, app.canvas.width, app.canvas.height);
-//    app.chosenDino = app.ctx.drawImage(app.image, app.dino.posX, app.dino.posY, 80, 80);
-// };
-
 
 
 $(function(){
