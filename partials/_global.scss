@@ -5,7 +5,7 @@ html {
 body {
    font-family: 'Press Start 2P', sans-serif;
    font-size: 1.8rem;
-   background-image: url("../assets/backgroundImage.png");
+   background: rgb(224, 223, 223);
 }
 
 
@@ -28,7 +28,7 @@ canvas {
 
 .game-border {
    border: 2px solid black;
-   background: #272727bb;
+   background: #525151;
 }
 
 .top-bar {
@@ -91,7 +91,7 @@ canvas {
    position: absolute;
    top: calc(50vh - 100px);
    left: calc(50% - 160px);
-   background: lightgrey;
+   background: rgb(224, 223, 223);
    box-shadow: 2px 2px 0 black, 4px 4px 0 black, 6px 6px 0 black;
    p {
       margin: 0px 5px 20px 5px;
