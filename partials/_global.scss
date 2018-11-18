@@ -4,8 +4,8 @@ html {
 
 body {
    font-family: 'Press Start 2P', sans-serif;
-   font-size: 2rem;
-   background: #f9f9f9;
+   font-size: 1.8rem;
+   background-image: url("../assets/backgroundImage.png");
 }
 
 
@@ -28,6 +28,7 @@ canvas {
 
 .game-border {
    border: 2px solid black;
+   background: #272727bb;
 }
 
 .top-bar {
@@ -47,7 +48,13 @@ canvas {
          width: 40px;
       }
    }
+   .points-container {
+      display: flex;
+      align-items: center;
+
+   }
 }
+
 
 .dino-controls {
    height: 65px;
@@ -78,14 +85,17 @@ canvas {
 }
 
 .pop-up {
-   max-width: 400px;
+   max-width: 320px;
    width: 100%;
    margin: 0 auto;
    position: absolute;
    top: calc(50vh - 100px);
-   left: calc(50% - 200px);
+   left: calc(50% - 160px);
    background: lightgrey;
    box-shadow: 2px 2px 0 black, 4px 4px 0 black, 6px 6px 0 black;
+   p {
+      margin: 0px 5px 20px 5px;
+   }
 }
 
 form.choose-character{
@@ -144,4 +154,32 @@ input[type="submit"] {
    font-size: 1.6rem;
    font-size: 16px;
    display: none;
+}
+
+// Media Queries
+
+@media(max-width: 460px){
+   .points {
+      display: none;
+   }
+}
+
+@media(max-width: 380px){
+   .pop-up {
+      width: 80%;
+      left: calc(50% - 150px);
+      font-size: 1.6rem;
+   }
+}
+
+@media(max-width: 350px){
+   .pop-up {
+      left: calc(50% - 140px);
+   }
+}
+
+@media(max-width: 335px){
+   .pop-up {
+      left: calc(50% - 128px);
+   }
 }

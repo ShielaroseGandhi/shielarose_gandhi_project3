@@ -162,8 +162,8 @@ html {
 
 body {
   font-family: 'Press Start 2P', sans-serif;
-  font-size: 2rem;
-  background: #f9f9f9; }
+  font-size: 1.8rem;
+  background-image: url("../assets/backgroundImage.png"); }
 
 .wrapper {
   max-width: 550px;
@@ -188,7 +188,8 @@ canvas {
   height: calc(100vh - (70px + 65px + 6px)); }
 
 .game-border {
-  border: 2px solid black; }
+  border: 2px solid black;
+  background: #272727bb; }
 
 .top-bar {
   border-bottom: 2px solid black;
@@ -215,6 +216,13 @@ canvas {
     .top-bar ul li {
       margin: 0 5px;
       width: 40px; }
+  .top-bar .points-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
 
 .dino-controls {
   height: 65px;
@@ -248,15 +256,17 @@ canvas {
     font-size: 4rem; }
 
 .pop-up {
-  max-width: 400px;
+  max-width: 320px;
   width: 100%;
   margin: 0 auto;
   position: absolute;
   top: calc(50vh - 100px);
-  left: calc(50% - 200px);
+  left: calc(50% - 160px);
   background: lightgrey;
   -webkit-box-shadow: 2px 2px 0 black, 4px 4px 0 black, 6px 6px 0 black;
   box-shadow: 2px 2px 0 black, 4px 4px 0 black, 6px 6px 0 black; }
+  .pop-up p {
+    margin: 0px 5px 20px 5px; }
 
 form.choose-character .characters {
   display: -webkit-box;
@@ -315,3 +325,21 @@ input[type="submit"] {
   font-size: 1.6rem;
   font-size: 16px;
   display: none; }
+
+@media (max-width: 460px) {
+  .points {
+    display: none; } }
+
+@media (max-width: 380px) {
+  .pop-up {
+    width: 80%;
+    left: calc(50% - 150px);
+    font-size: 1.6rem; } }
+
+@media (max-width: 350px) {
+  .pop-up {
+    left: calc(50% - 140px); } }
+
+@media (max-width: 335px) {
+  .pop-up {
+    left: calc(50% - 128px); } }

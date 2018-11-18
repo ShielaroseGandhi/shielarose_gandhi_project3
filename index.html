@@ -27,7 +27,10 @@
                   <img src="assets/heart.png" alt="heart">
                </li>
             </ul>
-            <p class="points">Points: <span class="point-counter"></span></p>
+            <div class="points-container">
+               <p class="points">Points: </p>
+               <span class="point-counter"></span>
+            </div>
          </div>
          <canvas id="canvas"></canvas>
          <div class="dino-controls">
@@ -42,7 +45,7 @@
       
       <div class="pop-up start-game">
          <form action"" class="choose-character">
-            <h2>Meateor</h2>
+            <h1>Meateor</h1>
             <p>Choose your dino:</p>
             <div class="characters">
                <input type="radio" name="character" value="one" id="one" onclick='dinoChecked(1)' checked>
