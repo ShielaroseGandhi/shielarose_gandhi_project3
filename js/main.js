@@ -375,7 +375,7 @@ app.animate = function(){
 };
 
 // Find the checked dino and display a shadow underneath
-dinoChecked = function(dinoNumber){
+app.dinoChecked = function(dinoNumber){
    let shadowNumber = ".shadow" + dinoNumber;
    if(dinoNumber == 1){
       $(".shadow1").removeClass("hide");
@@ -414,15 +414,25 @@ $(".start").on("click", function(event){
    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
 });
 
+// Reload page if play-again is clicked
+$(".play-again").on("click", function(event){
+   event.preventDefault();
+   location.reload();
+});
 
-
+// Reload page if enter or space is pressed to restart game
+$(document).keydown(function(e){
+   if ($(".game-over").is(":visible")){
+      if (e.keyCode == 13 || e.keyCode == 32) {
+         location.reload();
+      };
+   };
+});
 
 
 // Init
 app.init = function(){
-   // app.charactersAndItems.move;
-   // app.animate();
-   // app.loseALife();
+ dinoChecked();
 };
 
 
