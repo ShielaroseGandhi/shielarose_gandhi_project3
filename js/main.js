@@ -116,13 +116,13 @@ app.charactersAndItems.steak3 = {
 
 // Meteors
 app.charactersAndItems.meteor = {
-   name: "Meteor",
+   name: "Meteor1",
    x: app.randomNumber(app.canvas.width - 50),
-   y: -600,
+   y: -700,
    spdX: 0,
-   spdY: 1.5,
-   width: 65,
-   height: 65,
+   spdY: 1.3,
+   width: 75,
+   height: 75,
 }
 
 app.charactersAndItems.meteor2 = {
@@ -141,33 +141,47 @@ app.charactersAndItems.meteor3 = {
    y: -1200,
    spdX: 0,
    spdY: 1,
-   width: 65,
-   height: 65,
+   width: 75,
+   height: 75,
 }
 
-// Collision function for meteor
-app.meteorCollision = function (dino, meteor) {
-   if (!(meteor.y === dino.y)) {
-      return false;
-   }
-   if (meteor.x > (dino.x - meteor.width) && meteor.x < (dino.x + dino.width)) {
-      return true;
-   } else
-   return false;
-};
 
-// && (meteor.y === dino.y)
+
+// Collision function for meteor
+app.meteorCollision = function(dino, meteor){
+   if (meteor.x > dino.x && meteor.x < dino.x + dino.width && meteor.y > dino.y && meteor.y < dino.y + dino.height) {
+      console.log('meteor hit')
+      return true;
+   } 
+};
+// app.meteorCollision = function (dino, meteor) {
+//    if (!(meteor.y === dino.y)) {
+//       return false;
+//    }
+//    if (meteor.x > (dino.x - meteor.width) && meteor.x < (dino.x + dino.width)) {
+//       return true;
+//    } else
+//    return false;
+// };
+
+
 
 // Collision function for steak
 app.steakCollision = function (dino, steak) {
-   if (!(steak.y === dino.y)) {
-      return false;
-   }
-   if (steak.x > (dino.x - steak.width) && steak.x < (dino.x + dino.width)) {
+   if (steak.x > dino.x && steak.x < dino.x + dino.width && steak.y > dino.y && steak.y < dino.y + dino.height) {
+      console.log('steak hit')
       return true;
-   } else
-      return false;
+   } 
 };
+// app.steakCollision = function (dino, steak) {
+//    if (!(steak.y === dino.y)) {
+//       return false;
+//    }
+//    if (steak.x > (dino.x - steak.width) && steak.x < (dino.x + dino.width)) {
+//       return true;
+//    } else
+//       return false;
+// };
 
 // Move dino with arrow keys on screen
 $(".right").on("click", function (e) {
@@ -176,9 +190,7 @@ $(".right").on("click", function (e) {
    // Dino cannot go out of bounds
    if (app.charactersAndItems.dino.x < 0) {
       app.charactersAndItems.dino.x = 0;
-   }
-
-   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
+   } else if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
       app.charactersAndItems.dino.x = app.canvas.width - 70;
    }
 });
@@ -189,35 +201,28 @@ $(".left").on("click", function (e) {
    // Dino cannot go out of bounds
    if (app.charactersAndItems.dino.x < 0) {
       app.charactersAndItems.dino.x = 0;
-   }
-
-   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
+   } else if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
       app.charactersAndItems.dino.x = app.canvas.width - 70;
    }
 });
 
 // Keyboard functions - use arrow keys and click enter to start game
 $(document).keypress(function (e) {
+   // start game by clicking enter key
    if (e.keyCode == 13) {
       app.animate();
       $(".start-game").addClass("disappear");
       app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
-   } // start game by clicking enter key
-
-   if (e.keyCode == 39) {
+   } else if (e.keyCode == 39) {
       app.charactersAndItems.dino.x += app.charactersAndItems.dino.spdX;
-   } // right arrow
-
-   if (e.keyCode == 37) {
+   } else if (e.keyCode == 37) {
       app.charactersAndItems.dino.x -= app.charactersAndItems.dino.spdX;
-   } // left arrow
+   } // right and left arrow keys
 
    // Dino cannot go out of bounds
    if (app.charactersAndItems.dino.x < 0) {
       app.charactersAndItems.dino.x = 0;
-   }
-
-   if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
+   } else if (app.charactersAndItems.dino.x > app.canvas.width - 70) {
       app.charactersAndItems.dino.x = app.canvas.width - 70;
    }
 });
