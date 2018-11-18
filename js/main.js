@@ -74,12 +74,11 @@ app.charactersAndItems.dino = {
 
 // Random x coordinate generator for meteors and steaks
 app.randomNumber = function(maxNumber) {
-   console.log(maxNumber);
    let randomX = Math.floor((Math.random() * (maxNumber + 1)));
-   // randomX += 10;
-   // if (randomX > maxNumber) {
-   //    randomX = maxNumber - 50;
-   // }
+   randomX += 5;
+   if (randomX > maxNumber) {
+      randomX = maxNumber - 50;
+   }
    return randomX
 };
 
@@ -89,71 +88,72 @@ app.charactersAndItems.steak = {
    x: app.randomNumber(app.canvas.width - 50),
    y: -800,
    spdX: 0,
-   spdY: 2,
+   spdY: 2.1,
    width: 45,
    height: 45,
-}
+};
 
 app.charactersAndItems.steak2 = {
    name: "Steak2",
    x: app.randomNumber(app.canvas.width - 50),
    y: -1000,
    spdX: 0,
-   spdY: 2,
+   spdY: 1.7,
    width: 45,
    height: 45,
-}
+};
 
 app.charactersAndItems.steak3 = {
    name: "Steak3",
    x: app.randomNumber(app.canvas.width - 50),
    y: -250,
    spdX: 0,
-   spdY: 1.5,
+   spdY: 1.4,
    width: 45,
    height: 45,
-}
+};
 
 // Meteors
 app.charactersAndItems.meteor = {
    name: "Meteor1",
    x: app.randomNumber(app.canvas.width - 50),
-   y: -700,
-   spdX: 0,
-   spdY: 1.3,
-   width: 75,
-   height: 75,
-}
-
-app.charactersAndItems.meteor2 = {
-   name: "Meteor2",
-   x: app.randomNumber(app.canvas.width - 50),
-   y: -500,
+   y: -1000,
    spdX: 0,
    spdY: 2,
    width: 75,
    height: 75,
-}
+};
+
+app.charactersAndItems.meteor2 = {
+   name: "Meteor2",
+   x: app.randomNumber(app.canvas.width - 50),
+   y: -800,
+   spdX: 0,
+   spdY: 1.5,
+   width: 75,
+   height: 75,
+};
 
 app.charactersAndItems.meteor3 = {
    name: "Meteor3",
    x: app.randomNumber(app.canvas.width - 50),
-   y: -1200,
+   y: -250,
    spdX: 0,
-   spdY: 1,
+   spdY: 1.1,
    width: 75,
    height: 75,
-}
+};
 
 
 
 // Collision function for meteor
 app.meteorCollision = function(dino, meteor){
-   if (meteor.x > dino.x && meteor.x < dino.x + dino.width && meteor.y > dino.y && meteor.y < dino.y + dino.height) {
+   if (meteor.x >= dino.x && meteor.x <= dino.x + dino.width && meteor.y >= dino.y && meteor.y <= dino.y + dino.height) {
       console.log('meteor hit')
       return true;
    } 
 };
+
 // app.meteorCollision = function (dino, meteor) {
 //    if (!(meteor.y === dino.y)) {
 //       return false;
@@ -168,7 +168,7 @@ app.meteorCollision = function(dino, meteor){
 
 // Collision function for steak
 app.steakCollision = function (dino, steak) {
-   if (steak.x > dino.x && steak.x < dino.x + dino.width && steak.y > dino.y && steak.y < dino.y + dino.height) {
+   if (steak.x >= dino.x && steak.x <= dino.x + dino.width && steak.y >= dino.y && steak.y <= dino.y + dino.height) {
       console.log('steak hit')
       return true;
    } 
@@ -207,7 +207,7 @@ $(".left").on("click", function (e) {
 });
 
 // Keyboard functions - use arrow keys and click enter to start game
-$(document).keypress(function (e) {
+$(document).keydown(function (e) {
    // start game by clicking enter key
    if (e.keyCode == 13) {
       app.animate();
@@ -259,7 +259,7 @@ app.animate = function(){
          $(".game-over").addClass("appear");
          return false
       } // remove a life every time a meteor and dino collide
-      app.charactersAndItems.meteor.y = -app.canvas.height; // make meteor disappear once collision happens
+      app.charactersAndItems.meteor.y = -app.canvas.height - 750; // make meteor disappear once collision happens
    };
 
    // Meteor 2
@@ -270,7 +270,7 @@ app.animate = function(){
          $(".game-over").addClass("appear");
          return false
       } // remove a life every time a meteor and dino collide
-      app.charactersAndItems.meteor2.y = -app.canvas.height; // make meteor disappear once collision happens
+      app.charactersAndItems.meteor2.y = -app.canvas.height - 500; // make meteor disappear once collision happens
    };
 
    // Meteor 3
@@ -281,7 +281,7 @@ app.animate = function(){
          $(".game-over").addClass("appear");
          return false
       } // remove a life every time a meteor and dino collide
-      app.charactersAndItems.meteor3.y = -app.canvas.height; // make meteor disappear once collision happens
+      app.charactersAndItems.meteor3.y = -app.canvas.height - 1200; // make meteor disappear once collision happens
    };
 
    // Draw steaks
@@ -309,7 +309,7 @@ app.animate = function(){
       console.log("collide steak 1")
       app.points += 100
       $(".point-counter").text(app.points); // add 100 points every time steak and dino collide
-      app.charactersAndItems.steak.y = -app.canvas.height; // make steak restart once collision happens
+      app.charactersAndItems.steak.y = -app.canvas.height - 600; // make steak restart once collision happens
    };
 
    // Steak 2
@@ -317,7 +317,7 @@ app.animate = function(){
       console.log("collide steak 2")
       app.points += 100
       $(".point-counter").text(app.points); // add 100 points every time steak and dino collide
-      app.charactersAndItems.steak2.y = -app.canvas.height; // make steak restart once collision happens
+      app.charactersAndItems.steak2.y = -app.canvas.height - 250; // make steak restart once collision happens
    };
 
    // Steak 3
@@ -325,7 +325,7 @@ app.animate = function(){
       console.log("collide steak 3")
       app.points += 100
       $(".point-counter").text(app.points); // add 100 points every time steak and dino collide
-      app.charactersAndItems.steak3.y = -app.canvas.height; // make steak restart once collision happens
+      app.charactersAndItems.steak3.y = -app.canvas.height - 700; // make steak restart once collision happens
    };
 
    // begin animation loop
