@@ -1,3 +1,29 @@
+// Pop-up comes up on load on top of the game asking the player to choose their dino and select start
+
+// Make the pop-up disappear when the player clicks start (allow player to click "space" and "enter" to start game)
+
+// Player's chosen dino shows up on the bottom of canvas
+
+// Dino can move left and right with arrow keys
+
+// Dino cannot go out of bounds 
+
+// Steaks and meteors fall from the top of the canvas
+
+// Steaks and meteors cannot go out of bounds
+
+// If Dino misses steak, steak stays on the bottom of the canvas to be collected by the dino
+
+// If dino eats steak, steak disappears and points increase by 100
+
+// If dino misses meteor, meteor disappears 
+
+// If dino collides with meteor, meteor disappears and one life is lost
+
+// Once all 4 lives are lost, game over pop up appears 
+
+// Player can click "enter" or "space" to play again and be brought back to "Start game" pop up 
+
 const app = {}
 
 // Create canvas
@@ -62,7 +88,7 @@ app.playerImage.src = app.images.blueDino;
 app.charactersAndItems = {};
 // Player
 app.charactersAndItems.dino = {
-   name: "Blue",
+   name: "Player",
    x: app.canvas.width / 2 - 40,
    y: app.canvas.height - 80,
    spdX: 30,
@@ -144,8 +170,6 @@ app.charactersAndItems.meteor3 = {
    height: 75,
 };
 
-
-
 // Collision function for meteor
 app.meteorCollision = function(dino, meteor){
    if (meteor.x >= dino.x && meteor.x <= dino.x + dino.width && meteor.y >= dino.y && meteor.y <= dino.y + dino.height) {
@@ -154,18 +178,6 @@ app.meteorCollision = function(dino, meteor){
    } 
 };
 
-// app.meteorCollision = function (dino, meteor) {
-//    if (!(meteor.y === dino.y)) {
-//       return false;
-//    }
-//    if (meteor.x > (dino.x - meteor.width) && meteor.x < (dino.x + dino.width)) {
-//       return true;
-//    } else
-//    return false;
-// };
-
-
-
 // Collision function for steak
 app.steakCollision = function (dino, steak) {
    if (steak.x >= dino.x && steak.x <= dino.x + dino.width && steak.y >= dino.y && steak.y <= dino.y + dino.height) {
@@ -173,15 +185,6 @@ app.steakCollision = function (dino, steak) {
       return true;
    } 
 };
-// app.steakCollision = function (dino, steak) {
-//    if (!(steak.y === dino.y)) {
-//       return false;
-//    }
-//    if (steak.x > (dino.x - steak.width) && steak.x < (dino.x + dino.width)) {
-//       return true;
-//    } else
-//       return false;
-// };
 
 // Move dino with arrow keys on screen
 $(".right").on("click", function (e) {
@@ -404,6 +407,8 @@ dinoChecked = function(dinoNumber){
    }
 };
 
+// Pop-up controls
+
 // Remove default of submit button on start
 // Begin animations only when start button is clicked
 // Hide start-game pop-up on start and draw the selected dino on canvas 
@@ -414,11 +419,13 @@ $(".start").on("click", function(event){
    app.chosenDino = app.ctx.drawImage(app.playerImage, app.charactersAndItems.dino.x, app.charactersAndItems.dino.y, app.charactersAndItems.dino.width, app.charactersAndItems.dino.height);
 });
 
+// Open instructions if "i" is clicked on start-game pop-up
 $(".instructions-open").on("click", function(event){
    event.preventDefault();
    $(".instructions-overlay").addClass("appear");
 });
 
+// Close instructions if "x" is clicked
 $(".instructions-close").on("click", function(event) {
    event.preventDefault();
    $(".instructions-overlay").removeClass("appear");
@@ -439,39 +446,11 @@ $(document).keydown(function(e){
    };
 });
 
-
 // Init
 app.init = function(){
  dinoChecked();
 };
 
-
 $(function(){
    app.init();
 });
-
-// Pop-up comes up on load on top of the game asking the player to choose their dino and select start
-
-// Make the pop-up disappear when the player clicks start (allow player to click "space" and "enter" to start game)
-
-// Player's chosen dino shows up on the bottom of canvas
-
-// Dino can move left and right with arrow keys
-
-// Dino cannot go out of bounds 
-
-// Steaks and meteors fall from the top of the canvas
-
-// Steaks and meteors cannot go out of bounds
-
-// If Dino misses steak, steak stays on the bottom of the canvas to be collected by the dino
-
-// If dino eats steak, steak disappears and points increase by 100
-
-// If dino misses meteor, meteor disappears 
-
-// If dino collides with meteor, dino explodes and one life is lost
-
-// Once all 4 lives are done, game over pop up appears 
-
-// Player can click "enter" or "space" to play again and be brought back to "Start game" pop up 
