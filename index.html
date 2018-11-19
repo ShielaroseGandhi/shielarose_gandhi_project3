@@ -10,8 +10,11 @@
    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+   <!-- Contain all content with wrapper -->
    <div class="wrapper">
+      <!-- Game Container -->
       <div class="game-border">
+         <!-- Top bar with lives and score -->
          <div class="top-bar flex">
             <ul class="lives">
                <li class="life-one">
@@ -32,7 +35,9 @@
                <span class="point-counter"></span>
             </div>
          </div>
+         <!-- Canvas -->
          <canvas id="canvas"></canvas>
+         <!-- Dino arrow controls at bottom of screen -->
          <div class="dino-controls">
             <a href="" class="left">
                <
@@ -43,7 +48,9 @@
          </div>
       </div>
 
+      <!-- Start game pop-up -->
       <div class="pop-up start-game">
+         <!-- Instructions for game pop-up -->
          <div class="instructions-overlay">
             <button class="instructions-close">x</button>
             <p class="hide-responsive">Catch the steaks and avoid the meteors to keep them from going extinct!</p>
@@ -83,49 +90,55 @@
             <!-- <p>Use the arrow keys on your keyboard or on the screen to move your dino</p> -->
             <p class="start-instructions hide-responsive">Press space/enter to start</p>
          </div>
+         <!-- Form for start-game pop-up -->
          <form action"" class="choose-character">
             <h1>Meateor</h1>
             <button class="instructions-open">i</button> 
             <p>Choose your dino:</p>
             <!-- DINOS COURTESY OF  @ScissorMarks https://arks.itch.io/dino-characters -->
             <div class="characters">
+               <!-- Dino 1 -->
                <input type="radio" name="character" value="one" id="one" onclick='dinoChecked(1)' checked>
                <label for="one">
                   <img src="assets/dinoCharacters/blueDino-static.gif" class="dino dino1" id="blue-dino" alt="blue dinosaur">
                   <img src="./assets/dinoCharacters/shadow_1.png" alt="dinosaur shadow" class="dino-shadow shadow1">
                </label>
-         
+               <!-- Dino 2 -->
                <input type="radio" name="character" value="two" id="two" onclick='dinoChecked(2)'>
                <label for="two">
                   <img src="assets/dinoCharacters/redDino-static.gif" class="dino dino2" id="red-dino" alt="red dinosaur">
                   <img src="./assets/dinoCharacters/shadow_1.png" alt="dinosaur shadow" class="dino-shadow shadow2 hide">
                </label>
-         
+               <!-- Dino 3 -->
                <input type="radio" name="character" value="three" id="three" onclick='dinoChecked(3)'>
                <label for="three">
                   <img src="assets/dinoCharacters/yellowDino-static.gif" class="dino dino3" id="yellow-dino" alt="yellow dinosaur">
                   <img src="./assets/dinoCharacters/shadow_1.png" alt="dinosaur shadow" class="dino-shadow shadow3 hide">
                </label>
-      
+               <!-- Dino 4 -->
                <input type="radio" name="character" value="four" id="four" onclick='dinoChecked(4)'>
                <label for="four">
                   <img src="assets/dinoCharacters/greenDino-static.gif" class="dino dino4" id="green-dino" alt="green dinosaur">
                   <img src="./assets/dinoCharacters/shadow_1.png" alt="dinosaur shadow" class="dino-shadow shadow4 hide">
                </label>
             </div>
+            <!-- Start game submit button -->
             <label for="submit" class="visuallyhidden"></label>
             <input type="submit" name="start" value="Start" id="start" class="start">
          </form>
       </div>
+      <!-- Play-again pop-up -->
       <div class="pop-up game-over">
          <p>Extinct!</p>
          <form action="" class="restart">
+            <!-- Play again submit button -->
             <label for="play-again"></label>
             <input type="submit" name="play-again" value="Play Again" id="play-again" class="play-again">
          </form>
       </div>
    </div>
 
+   <!-- Javascript & jQuery -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script src="js/main.js"></script>
 </body>
