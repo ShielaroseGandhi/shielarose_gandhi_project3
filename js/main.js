@@ -171,17 +171,27 @@ app.charactersAndItems.meteor3 = {
 };
 
 // Collision function for meteor
-app.meteorCollision = function(dino, meteor){
-   if (meteor.x >= dino.x && meteor.x <= dino.x + dino.width && meteor.y >= dino.y && meteor.y <= dino.y + dino.height) {
-      return true;
-   } 
-};
+// From https://gist.github.com/jaxxreal/7527349
+app.collision = function(dino, item){
+   // measure height and width of dino
+   let x1 = dino.x;
+   let y1 = dino.y;
+   let h1 = dino.height;
+   let w1 = dino.width;
+   // measure height and width of item - either meteor or steak
+   let x2 = item.x;
+   let y2 = item.y;
+   let h2 = item.height;
+   let w2 = item.width;
 
-// Collision function for steak
-app.steakCollision = function (dino, steak) {
-   if (steak.x >= dino.x && steak.x <= dino.x + dino.width && steak.y >= dino.y && steak.y <= dino.y + dino.height) {
-      return true;
-   } 
+   let b1 = y1 + h1; // dino y + dino height
+   let r1 = x1 + w1; // dino x + dino width
+
+   let b2 = y2 + h2; // item y + item height
+   let r2 = x2 + w2; // item x + item width
+
+   if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+   else return true;
 };
 
 // Move dino with arrow keys on screen
@@ -253,7 +263,7 @@ app.animate = function(){
 
    // Collision detection with meteors
    // Meteor 1
-   if (app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor)){
+   if (app.collision(app.charactersAndItems.dino, app.charactersAndItems.meteor)){
       $(".lives li:last-child").remove();
       if($(".lives li").length === 0){
          $(".game-over").addClass("appear");
@@ -263,7 +273,7 @@ app.animate = function(){
    };
 
    // Meteor 2
-   if (app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor2)){
+   if (app.collision(app.charactersAndItems.dino, app.charactersAndItems.meteor2)){
       $(".lives li:last-child").remove();
       if ($(".lives li").length === 0) {
          $(".game-over").addClass("appear");
@@ -273,7 +283,7 @@ app.animate = function(){
    };
 
    // Meteor 3
-   if (app.meteorCollision(app.charactersAndItems.dino, app.charactersAndItems.meteor3)){
+   if (app.collision(app.charactersAndItems.dino, app.charactersAndItems.meteor3)){
       $(".lives li:last-child").remove();
       if ($(".lives li").length === 0) {
          $(".game-over").addClass("appear");
@@ -303,21 +313,21 @@ app.animate = function(){
 
    // Collision detection with steaks
    // Steak 1
-   if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak)){
+   if (app.collision(app.charactersAndItems.dino, app.charactersAndItems.steak)){
       app.points += 100
       $(".point-counter").text(app.points); // add 100 points every time steak and dino collide
       app.charactersAndItems.steak.y = -app.canvas.height - 600; // make steak restart once collision happens
    };
 
    // Steak 2
-   if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak2)){
+   if (app.collision(app.charactersAndItems.dino, app.charactersAndItems.steak2)){
       app.points += 100
       $(".point-counter").text(app.points); // add 100 points every time steak and dino collide
       app.charactersAndItems.steak2.y = -app.canvas.height - 250; // make steak restart once collision happens
    };
 
    // Steak 3
-   if (app.steakCollision(app.charactersAndItems.dino, app.charactersAndItems.steak3)) {
+   if (app.collision(app.charactersAndItems.dino, app.charactersAndItems.steak3)) {
       app.points += 100
       $(".point-counter").text(app.points); // add 100 points every time steak and dino collide
       app.charactersAndItems.steak3.y = -app.canvas.height - 700; // make steak restart once collision happens
