@@ -170,7 +170,7 @@ app.charactersAndItems.meteor3 = {
    height: 75,
 };
 
-// Collision function for meteor
+// Collision function
 // From https://gist.github.com/jaxxreal/7527349
 app.collision = function(dino, item){
    // measure height and width of dino
