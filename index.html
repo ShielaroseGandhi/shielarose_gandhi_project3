@@ -6,7 +6,7 @@
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Meateor</title>
    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -46,9 +46,42 @@
       <div class="pop-up start-game">
          <div class="instructions-overlay">
             <button class="instructions-close">x</button>
-            <p>Catch the steaks and avoid the meteors to keep them from going extinct!</p>
-            <p>Use the arrow keys on your keyboard or on the screen to move your dino</p>
-            <p class="start-instructions">Press space or enter to start once you've chosen your dino</p>
+            <p class="hide-responsive">Catch the steaks and avoid the meteors to keep them from going extinct!</p>
+            <div class="image-instructions">
+               <div class="move-dino">
+                  <div class="blue-dino-container">
+                     <img src="assets/blue-dino.png" alt="blue dino">
+                  </div>
+                  <div class="arrow-key-flex">
+                     <div class=purple-key-container>
+                        <img src="assets/on-screen-arrow-keys.png" alt="purple arrow keys used to move dinos">
+                     </div>
+                     <p>or</p>
+                     <div class="keyboard-arrow-keys">
+                        <div class="full-width">
+                           <div class="key"><i class="fas fa-arrow-up"></i></div>
+                        </div>
+                        <div class="key highlight"><i class="fas fa-arrow-left"></i></div>
+                        <div class="key"><i class="fas fa-arrow-down"></i></div>
+                        <div class="key highlight"><i class="fas fa-arrow-right"></i></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="steak-img">
+                  <img src="assets/hit-steak.png" alt="picture of dino catching steak">
+                  <p>= +100</p>
+               </div>
+               <div class="meteor-img">
+                  <img src="assets/hit-meteor.png" alt="picture of dino getting hit by steak">
+                  <p>= </p>
+                  <div class="heart-strike">
+                     <img src="assets/heart.png" alt="heart" class="heart-img">
+                     <span></span>
+                  </div>
+               </div>
+            </div>
+            <!-- <p>Use the arrow keys on your keyboard or on the screen to move your dino</p> -->
+            <p class="start-instructions hide-responsive">Press space/enter to start</p>
          </div>
          <form action"" class="choose-character">
             <h1>Meateor</h1>

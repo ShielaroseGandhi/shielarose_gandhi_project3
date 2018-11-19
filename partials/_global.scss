@@ -95,6 +95,10 @@ canvas {
    p {
       line-height: 1.6;
       text-align: left;
+      &:last-child {
+         text-align: center;
+         margin-bottom: 0;
+      }
    }
    .instructions-close {
       position: absolute;
@@ -108,6 +112,98 @@ canvas {
       padding: 2px 3px 2px 4px;
       &:hover {
          background: #272727;
+      }
+   }
+   img {
+      max-width: 100%;
+      width: 70px;
+      margin: 0 10px;
+   }
+   .image-instructions {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 0 auto;
+   }
+   .move-dino {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      .blue-dino-container {
+         width: 20%;
+      }
+      .blue-dino-container img{
+         width: 100%;
+         display: block;
+      }
+   }
+   .arrow-key-flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      .purple-key-container img{
+         width: 50%;
+         display: block;
+         margin: 0 auto;
+      }
+      p {
+         margin-bottom: 0px;
+      }
+   }
+   .keyboard-arrow-keys{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      .key {
+         border: 1px solid black;
+         padding: 2px 4px;
+         width: calc(100% / 3);
+         &:first-child {
+            border-bottom: none;
+            margin: 0 auto;
+         }
+         &:nth-child(2){
+            border-right: none;
+         }
+         &:nth-child(4){
+            border-left: none;
+         }
+      }
+      .full-width {
+         width: 100%;
+      }
+      .highlight {
+         background: #272727;
+         color: white;
+      }
+   }
+   .steak-img,
+   .meteor-img {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      width: 50%;
+      p {
+         margin-bottom: 0;
+      }
+   }
+   .heart-strike {
+      position: relative;
+      .heart-img {
+         width: 35px;
+      }
+      span {
+         border-left: 2px solid black;
+         height: 50px;
+         transform: rotate(-45deg);
+         position: absolute;
+         top: -12px;
+         left: 25px;
+         font-size: 3.5rem;
       }
    }
 }
@@ -208,11 +304,49 @@ input[type="submit"] {
       left: calc(50% - 150px);
       font-size: 1.6rem;
    }
+   .instructions-overlay {
+      .image-instructions{
+         flex-direction: column;
+      }
+      .blue-dino-container {
+         width: 35%;
+      }
+      .arrow-key-flex {
+         width: 65%;
+         .purple-key-container img {
+            width: 60%;
+         }
+         .keyboard-arrow-keys {
+            font-size: 1.2rem;
+         }
+      }
+      .steak-img,
+      .meteor-img {
+         width: 100%;
+         img {
+            width: 45px;
+         }
+      }
+      .hide-responsive {
+         display: none;
+      }
+   }
 }
 
 @media(max-width: 350px){
    .pop-up {
       left: calc(50% - 140px);
+   }
+   .instructions-overlay {
+      .arrow-key-flex {
+         width: 65%;
+         .purple-key-container img {
+            width: 70%;
+         }
+         .keyboard-arrow-keys {
+            font-size: 0.8rem;
+         }
+      }
    }
 }
 
