@@ -1,0 +1,66 @@
+// Remove the word "score" from the top-bar
+@media(max-width: 460px){
+   .points {
+      display: none;
+   }
+}
+
+// Adjust sizing of start-game pop-up and instructions
+@media(max-width: 380px){
+   .pop-up {
+      width: 80%;
+      left: calc(50% - 150px);
+      font-size: 1.6rem;
+   }
+   .instructions-overlay {
+      .image-instructions{
+         flex-direction: column;
+      }
+      .blue-dino-container {
+         width: 35%;
+      }
+      .arrow-key-flex {
+         width: 65%;
+         .purple-key-container img {
+            width: 60%;
+         }
+         .keyboard-arrow-keys {
+            font-size: 1.2rem;
+         }
+      }
+      .steak-img,
+      .meteor-img {
+         width: 100%;
+         img {
+            width: 45px;
+         }
+      }
+      .hide-responsive {
+         display: none;
+      }
+   }
+}
+
+// Adjust start-game pop-up size
+@media(max-width: 350px){
+   .pop-up {
+      left: calc(50% - 140px);
+   }
+   .instructions-overlay {
+      .arrow-key-flex {
+         width: 65%;
+         .purple-key-container img {
+            width: 70%;
+         }
+         .keyboard-arrow-keys {
+            font-size: 0.8rem;
+         }
+      }
+   }
+}
+
+@media(max-width: 335px){
+   .pop-up {
+      left: calc(50% - 128px);
+   }
+}

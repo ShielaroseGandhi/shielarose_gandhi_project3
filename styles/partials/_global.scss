@@ -5,9 +5,9 @@ html {
 body {
    font-family: 'Press Start 2P', sans-serif;
    font-size: 1.8rem;
-   background: rgb(224, 223, 223);
+   background: $primary;
+   color: $black;
 }
-
 
 .wrapper {
    max-width: 550px;
@@ -27,19 +27,20 @@ canvas {
 }
 
 .game-border {
-   border: 2px solid black;
-   background: #525151;
+   border: $twopxborder;
+   background: $secondary;
 }
 
+// Styling for top bar with lives and score
 .top-bar {
-   border-bottom: 2px solid black;
+   border-bottom: $twopxborder;
    height: 70px;
    padding: 0 15px;
    display: flex;
    justify-content: space-between;
    align-items: center;
    position: relative;
-   background: rgb(131, 112, 250);
+   background: $accent;
    ul {
       display: flex;
       align-items: center;
@@ -55,43 +56,117 @@ canvas {
    }
 }
 
-
+// Styling for arrows at the bottom of canvas
 .dino-controls {
    height: 65px;
-   border-top: 2px solid black;
+   border-top: $twopxborder;
    display: flex;
    .left,
    .right {
-      background: rgb(131, 112, 250);
+      background: $accent;
       width: 50%;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: black;
+      color: $black;
       &:hover {
-         background-color: rgb(168, 168, 248);
+         background-color: $accenthover;
       }
    }
    .left {
-      border-right: 1px solid black;
+      border-right: $onepxborder;
    }
    .right {
-      border-left: 1px solid black;
+      border-left: 1px solid $black;
    }
 }
 
+// General styles for all pop ups - start game, play again, and instructions
+.pop-up {
+   max-width: 400px;
+   width: 100%;
+   margin: 0 auto;
+   position: absolute;
+   top: calc(50vh - 150px);
+   left: calc(50% - 200px);
+   border: $twopxborder;
+   background: $primary;
+   box-shadow: 2px 2px 0 $black, 4px 4px 0 $black, 6px 6px 0 $black;
+   p {
+      margin: 0px 5px 20px 5px;
+   }
+}
+
+// Start game pop-up styles
+form.choose-character{
+   position: relative;
+   .instructions-open {
+      position: absolute;
+      top: -10px;
+      right: 15px;
+      border: $onepxborder;
+      background: $black;
+      color: $primary;
+      font-size: 1.2rem;
+      padding: 2px 4px;
+      &:hover {
+         background: $iconhover;
+      }
+   }
+   .characters {
+      display: flex;
+      justify-content: center;
+      padding-bottom: 15px;
+   }
+   label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;      
+      margin: 0 15px;
+      &:hover {
+         cursor: pointer;
+      }
+   }
+   .dino-shadow {
+      width: 50px;
+   }
+   .dino {
+      width: 50px;
+   }
+}
+
+// jquery add/remove classes 
+.hide,
+.disappear,
+input[type="radio"] {
+   display: none;
+}
+
+// styling for submit buttons on start and end game pop ups
+input[type="submit"] {
+   padding: 15px;
+   width: 100%;
+   background: $accent;
+   border: none;
+   border-top: $onepxborder;
+   &:hover {
+      background: $accenthover;
+   }
+}
+
+// Styling for instructions 
 .instructions-overlay {
    display: none;
    font-size: 1.5rem;
    margin-top: 0;
-   border: 2px solid black;
+   border: $twopxborder;
    padding: 25px;
    position: absolute;
    top: -2px;
    left: -2px;
    z-index: 10;
-   background: rgb(224, 223, 223);
+   background: $primary;
    p {
       line-height: 1.6;
       text-align: left;
@@ -105,13 +180,13 @@ canvas {
       top: 15px;
       right: 15px;
       font-size: 1.2rem;
-      border: 1px solid black;
-      background: black;
-      color: white;
+      border: $onepxborder;
+      background: $black;
+      color: $primary;
       font-size: 1.2rem;
       padding: 2px 3px 2px 4px;
       &:hover {
-         background: #272727;
+         background: $iconhover;
       }
    }
    img {
@@ -159,7 +234,7 @@ canvas {
       flex-wrap: wrap;
       justify-content: center;
       .key {
-         border: 1px solid black;
+         border: $onepxborder;
          padding: 2px 4px;
          width: calc(100% / 3);
          &:first-child {
@@ -177,8 +252,8 @@ canvas {
          width: 100%;
       }
       .highlight {
-         background: #272727;
-         color: white;
+         background: $iconhover;
+         color: $primary;
       }
    }
    .steak-img,
@@ -197,7 +272,7 @@ canvas {
          width: 35px;
       }
       span {
-         border-left: 2px solid black;
+         border-left: $twopxborder;
          height: 50px;
          transform: rotate(-45deg);
          position: absolute;
@@ -208,75 +283,7 @@ canvas {
    }
 }
 
-.pop-up {
-   max-width: 400px;
-   width: 100%;
-   margin: 0 auto;
-   position: absolute;
-   top: calc(50vh - 150px);
-   left: calc(50% - 200px);
-   border: 2px solid black;
-   background: rgb(224, 223, 223);
-   box-shadow: 2px 2px 0 black, 4px 4px 0 black, 6px 6px 0 black;
-   p {
-      margin: 0px 5px 20px 5px;
-   }
-}
-
-form.choose-character{
-   position: relative;
-   .instructions-open {
-      position: absolute;
-      top: -10px;
-      right: 15px;
-      border: 1px solid black;
-      background: black;
-      color: white;
-      font-size: 1.2rem;
-      padding: 2px 4px;
-      &:hover {
-         background: #272727;
-      }
-   }
-   .characters {
-      display: flex;
-      justify-content: center;
-      padding-bottom: 15px;
-   }
-   label {
-      display: flex;
-      flex-direction: column;
-      align-items: center;      
-      margin: 0 15px;
-      &:hover {
-         cursor: pointer;
-      }
-   }
-   .dino-shadow {
-      width: 50px;
-   }
-   .dino {
-      width: 50px;
-   }
-}
-
-.hide,
-.disappear,
-input[type="radio"] {
-   display: none;
-}
-
-input[type="submit"] {
-   padding: 15px;
-   width: 100%;
-   background: rgb(131, 112, 250);
-   border: none;
-   border-top: 1px solid black;
-   &:hover {
-      background: rgb(168, 168, 248);
-   }
-}
-
+// play-again pop up styles
 .game-over {
    display: none;
    margin: 50px 0;
@@ -285,73 +292,7 @@ input[type="submit"] {
    }  
 }
 
+// jquery add/remove class 
 .appear {
    display: block;
-}
-
-
-// Media Queries
-
-@media(max-width: 460px){
-   .points {
-      display: none;
-   }
-}
-
-@media(max-width: 380px){
-   .pop-up {
-      width: 80%;
-      left: calc(50% - 150px);
-      font-size: 1.6rem;
-   }
-   .instructions-overlay {
-      .image-instructions{
-         flex-direction: column;
-      }
-      .blue-dino-container {
-         width: 35%;
-      }
-      .arrow-key-flex {
-         width: 65%;
-         .purple-key-container img {
-            width: 60%;
-         }
-         .keyboard-arrow-keys {
-            font-size: 1.2rem;
-         }
-      }
-      .steak-img,
-      .meteor-img {
-         width: 100%;
-         img {
-            width: 45px;
-         }
-      }
-      .hide-responsive {
-         display: none;
-      }
-   }
-}
-
-@media(max-width: 350px){
-   .pop-up {
-      left: calc(50% - 140px);
-   }
-   .instructions-overlay {
-      .arrow-key-flex {
-         width: 65%;
-         .purple-key-container img {
-            width: 70%;
-         }
-         .keyboard-arrow-keys {
-            font-size: 0.8rem;
-         }
-      }
-   }
-}
-
-@media(max-width: 335px){
-   .pop-up {
-      left: calc(50% - 128px);
-   }
 }

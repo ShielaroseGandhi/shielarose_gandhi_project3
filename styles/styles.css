@@ -163,7 +163,8 @@ html {
 body {
   font-family: 'Press Start 2P', sans-serif;
   font-size: 1.8rem;
-  background: #e0dfdf; }
+  background: #eeecec;
+  color: #171717; }
 
 .wrapper {
   max-width: 550px;
@@ -188,11 +189,11 @@ canvas {
   height: calc(100vh - (70px + 65px + 6px)); }
 
 .game-border {
-  border: 2px solid black;
-  background: #525151; }
+  border: 2px solid #171717;
+  background: #272727; }
 
 .top-bar {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #171717;
   height: 70px;
   padding: 0 15px;
   display: -webkit-box;
@@ -226,7 +227,7 @@ canvas {
 
 .dino-controls {
   height: 65px;
-  border-top: 2px solid black;
+  border-top: 2px solid #171717;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
@@ -244,26 +245,94 @@ canvas {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    color: black; }
+    color: #171717; }
     .dino-controls .left:hover,
     .dino-controls .right:hover {
       background-color: #a8a8f8; }
   .dino-controls .left {
-    border-right: 1px solid black; }
+    border-right: 1px solid #171717; }
   .dino-controls .right {
-    border-left: 1px solid black; }
+    border-left: 1px solid #171717; }
+
+.pop-up {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: calc(50vh - 150px);
+  left: calc(50% - 200px);
+  border: 2px solid #171717;
+  background: #eeecec;
+  -webkit-box-shadow: 2px 2px 0 #171717, 4px 4px 0 #171717, 6px 6px 0 #171717;
+  box-shadow: 2px 2px 0 #171717, 4px 4px 0 #171717, 6px 6px 0 #171717; }
+  .pop-up p {
+    margin: 0px 5px 20px 5px; }
+
+form.choose-character {
+  position: relative; }
+  form.choose-character .instructions-open {
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    border: 1px solid #171717;
+    background: #171717;
+    color: #eeecec;
+    font-size: 1.2rem;
+    padding: 2px 4px; }
+    form.choose-character .instructions-open:hover {
+      background: #272727; }
+  form.choose-character .characters {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-bottom: 15px; }
+  form.choose-character label {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 0 15px; }
+    form.choose-character label:hover {
+      cursor: pointer; }
+  form.choose-character .dino-shadow {
+    width: 50px; }
+  form.choose-character .dino {
+    width: 50px; }
+
+.hide,
+.disappear,
+input[type="radio"] {
+  display: none; }
+
+input[type="submit"] {
+  padding: 15px;
+  width: 100%;
+  background: #8370fa;
+  border: none;
+  border-top: 1px solid #171717; }
+  input[type="submit"]:hover {
+    background: #a8a8f8; }
 
 .instructions-overlay {
   display: none;
   font-size: 1.5rem;
   margin-top: 0;
-  border: 2px solid black;
+  border: 2px solid #171717;
   padding: 25px;
   position: absolute;
   top: -2px;
   left: -2px;
   z-index: 10;
-  background: #e0dfdf; }
+  background: #eeecec; }
   .instructions-overlay p {
     line-height: 1.6;
     text-align: left; }
@@ -275,9 +344,9 @@ canvas {
     top: 15px;
     right: 15px;
     font-size: 1.2rem;
-    border: 1px solid black;
-    background: black;
-    color: white;
+    border: 1px solid #171717;
+    background: #171717;
+    color: #eeecec;
     font-size: 1.2rem;
     padding: 2px 3px 2px 4px; }
     .instructions-overlay .instructions-close:hover {
@@ -344,7 +413,7 @@ canvas {
     -ms-flex-pack: center;
     justify-content: center; }
     .instructions-overlay .keyboard-arrow-keys .key {
-      border: 1px solid black;
+      border: 1px solid #171717;
       padding: 2px 4px;
       width: calc(100% / 3); }
       .instructions-overlay .keyboard-arrow-keys .key:first-child {
@@ -358,7 +427,7 @@ canvas {
       width: 100%; }
     .instructions-overlay .keyboard-arrow-keys .highlight {
       background: #272727;
-      color: white; }
+      color: #eeecec; }
   .instructions-overlay .steak-img,
   .instructions-overlay .meteor-img {
     display: -webkit-box;
@@ -377,7 +446,7 @@ canvas {
     .instructions-overlay .heart-strike .heart-img {
       width: 35px; }
     .instructions-overlay .heart-strike span {
-      border-left: 2px solid black;
+      border-left: 2px solid #171717;
       height: 50px;
       -webkit-transform: rotate(-45deg);
       -ms-transform: rotate(-45deg);
@@ -386,74 +455,6 @@ canvas {
       top: -12px;
       left: 25px;
       font-size: 3.5rem; }
-
-.pop-up {
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-  position: absolute;
-  top: calc(50vh - 150px);
-  left: calc(50% - 200px);
-  border: 2px solid black;
-  background: #e0dfdf;
-  -webkit-box-shadow: 2px 2px 0 black, 4px 4px 0 black, 6px 6px 0 black;
-  box-shadow: 2px 2px 0 black, 4px 4px 0 black, 6px 6px 0 black; }
-  .pop-up p {
-    margin: 0px 5px 20px 5px; }
-
-form.choose-character {
-  position: relative; }
-  form.choose-character .instructions-open {
-    position: absolute;
-    top: -10px;
-    right: 15px;
-    border: 1px solid black;
-    background: black;
-    color: white;
-    font-size: 1.2rem;
-    padding: 2px 4px; }
-    form.choose-character .instructions-open:hover {
-      background: #272727; }
-  form.choose-character .characters {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    padding-bottom: 15px; }
-  form.choose-character label {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    margin: 0 15px; }
-    form.choose-character label:hover {
-      cursor: pointer; }
-  form.choose-character .dino-shadow {
-    width: 50px; }
-  form.choose-character .dino {
-    width: 50px; }
-
-.hide,
-.disappear,
-input[type="radio"] {
-  display: none; }
-
-input[type="submit"] {
-  padding: 15px;
-  width: 100%;
-  background: #8370fa;
-  border: none;
-  border-top: 1px solid black; }
-  input[type="submit"]:hover {
-    background: #a8a8f8; }
 
 .game-over {
   display: none;
