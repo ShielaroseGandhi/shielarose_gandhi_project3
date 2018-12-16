@@ -91,7 +91,7 @@ app.charactersAndItems.dino = {
    name: "Player",
    x: app.canvas.width / 2 - 40,
    y: app.canvas.height - 80,
-   spdX: 30,
+   spdX: 35,
    spdY: 0,
    hp: 4,
    width: 65,
@@ -114,7 +114,7 @@ app.charactersAndItems.steak = {
    x: app.randomNumber(app.canvas.width - 50),
    y: -800,
    spdX: 0,
-   spdY: 2.1,
+   spdY: 3.1,
    width: 45,
    height: 45,
 };
@@ -124,7 +124,7 @@ app.charactersAndItems.steak2 = {
    x: app.randomNumber(app.canvas.width - 50),
    y: -1000,
    spdX: 0,
-   spdY: 1.7,
+   spdY: 3.4,
    width: 45,
    height: 45,
 };
@@ -134,7 +134,7 @@ app.charactersAndItems.steak3 = {
    x: app.randomNumber(app.canvas.width - 50),
    y: -250,
    spdX: 0,
-   spdY: 1.4,
+   spdY: 2.7,
    width: 45,
    height: 45,
 };
@@ -145,7 +145,7 @@ app.charactersAndItems.meteor = {
    x: app.randomNumber(app.canvas.width - 50),
    y: -1000,
    spdX: 0,
-   spdY: 2,
+   spdY: 2.4,
    width: 75,
    height: 75,
 };
@@ -155,7 +155,7 @@ app.charactersAndItems.meteor2 = {
    x: app.randomNumber(app.canvas.width - 50),
    y: -800,
    spdX: 0,
-   spdY: 1.5,
+   spdY: 2.75,
    width: 75,
    height: 75,
 };
@@ -165,7 +165,7 @@ app.charactersAndItems.meteor3 = {
    x: app.randomNumber(app.canvas.width - 50),
    y: -250,
    spdX: 0,
-   spdY: 1.1,
+   spdY: 3.4,
    width: 75,
    height: 75,
 };
