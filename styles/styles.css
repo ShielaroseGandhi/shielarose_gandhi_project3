@@ -163,11 +163,12 @@ html {
 body {
   font-family: 'Press Start 2P', sans-serif;
   font-size: 1.8rem;
-  background: -webkit-gradient(linear, left bottom, left top, from(#171717), to(#313131));
-  background: -webkit-linear-gradient(bottom, #171717, #313131);
-  background: -o-linear-gradient(bottom, #171717, #313131);
-  background: linear-gradient(to top, #171717, #313131);
-  color: #171717; }
+  background-color: #171717;
+  background-image: -webkit-radial-gradient(white, rgba(255, 255, 255, 0.15) 1px, transparent 5px), -webkit-radial-gradient(white, rgba(255, 255, 255, 0.1) 2px, transparent 10px), -webkit-radial-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1) 2px, transparent 5px), -webkit-radial-gradient(white, rgba(255, 255, 255, 0.2) 5px, transparent 10px), -webkit-radial-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1) 2px, transparent 5px);
+  background-image: -o-radial-gradient(white, rgba(255, 255, 255, 0.15) 1px, transparent 5px), -o-radial-gradient(white, rgba(255, 255, 255, 0.1) 2px, transparent 10px), -o-radial-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1) 2px, transparent 5px), -o-radial-gradient(white, rgba(255, 255, 255, 0.2) 5px, transparent 10px), -o-radial-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1) 2px, transparent 5px);
+  background-image: radial-gradient(white, rgba(255, 255, 255, 0.15) 1px, transparent 5px), radial-gradient(white, rgba(255, 255, 255, 0.1) 2px, transparent 10px), radial-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1) 2px, transparent 5px), radial-gradient(white, rgba(255, 255, 255, 0.2) 5px, transparent 10px), radial-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1) 2px, transparent 5px);
+  background-size: 750px 750px, 650px 650px, 480px 450px, 300px 300px, 240px 265px;
+  background-position: -70px 0, 130px 20px, -50px 270px, 30px 0px; }
 
 .wrapper {
   max-width: 550px;

@@ -5,8 +5,15 @@ html {
 body {
    font-family: 'Press Start 2P', sans-serif;
    font-size: 1.8rem;
-   background: linear-gradient(to top, #171717, #313131);
-   color: $black;
+   background-color: #171717;
+   background-image:
+      radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
+      radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 10px),
+      radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 5px),
+      radial-gradient(white, rgba(255,255,255,.2) 5px, transparent 10px),
+      radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 5px);
+      background-size: 750px 750px, 650px 650px, 480px 450px, 300px 300px, 240px 265px;
+      background-position: -70px 0, 130px 20px, -50px 270px, 30px 0px;
 }
 
 .wrapper {
