@@ -163,7 +163,10 @@ html {
 body {
   font-family: 'Press Start 2P', sans-serif;
   font-size: 1.8rem;
-  background: #eeecec;
+  background: -webkit-gradient(linear, left bottom, left top, from(#171717), to(#313131));
+  background: -webkit-linear-gradient(bottom, #171717, #313131);
+  background: -o-linear-gradient(bottom, #171717, #313131);
+  background: linear-gradient(to top, #171717, #313131);
   color: #171717; }
 
 .wrapper {
@@ -171,7 +174,6 @@ body {
   text-align: center;
   margin: auto;
   width: 100%;
-  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -186,11 +188,16 @@ body {
 canvas {
   width: 100%;
   max-height: 900px;
-  height: calc(100vh - (70px + 65px + 6px)); }
+  height: calc(100vh - (70px + 65px + 6px));
+  background: -webkit-gradient(linear, left bottom, left top, from(#171717), to(#313131));
+  background: -webkit-linear-gradient(bottom, #171717, #313131);
+  background: -o-linear-gradient(bottom, #171717, #313131);
+  background: linear-gradient(to top, #171717, #313131); }
 
 .game-border {
   border: 2px solid #171717;
-  background: #272727; }
+  background: #272727;
+  height: 100vh; }
 
 .top-bar {
   border-bottom: 2px solid #171717;
@@ -270,17 +277,6 @@ canvas {
 
 form.choose-character {
   position: relative; }
-  form.choose-character .instructions-open {
-    position: absolute;
-    top: -10px;
-    right: 15px;
-    border: 1px solid #171717;
-    background: #171717;
-    color: #eeecec;
-    font-size: 1.2rem;
-    padding: 2px 4px; }
-    form.choose-character .instructions-open:hover {
-      background: #272727; }
   form.choose-character .characters {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -313,13 +309,15 @@ form.choose-character {
 input[type="radio"] {
   display: none; }
 
-input[type="submit"] {
+input[type="submit"],
+.instructions-open {
   padding: 15px;
   width: 100%;
   background: #8370fa;
   border: none;
   border-top: 1px solid #171717; }
-  input[type="submit"]:hover {
+  input[type="submit"]:hover,
+  .instructions-open:hover {
     background: #a8a8f8; }
 
 .instructions-overlay {
@@ -329,10 +327,12 @@ input[type="submit"] {
   border: 2px solid #171717;
   padding: 25px;
   position: absolute;
-  top: -2px;
+  top: -50px;
   left: -2px;
   z-index: 10;
-  background: #eeecec; }
+  background: #eeecec;
+  -webkit-box-shadow: 2px 2px 0 #171717, 4px 4px 0 #171717, 6px 6px 0 #171717, 8px 8px 0 #171717;
+  box-shadow: 2px 2px 0 #171717, 4px 4px 0 #171717, 6px 6px 0 #171717, 8px 8px 0 #171717; }
   .instructions-overlay p {
     line-height: 1.6;
     text-align: left; }
